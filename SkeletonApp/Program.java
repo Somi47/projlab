@@ -118,6 +118,11 @@ public class Program
 		System.out.println("4. Kilépés");
 	}
 	
+	private static void AdminMenu()
+	{
+		System.out.println(worker1.GetName());
+		System.out.println(worker2.GetName());
+	}
 	
 	public static void WorkerMoveMenu(String input) throws IOException
 	{
@@ -294,17 +299,19 @@ public class Program
 			input = br.readLine();
 			switch(input)
 			{
-			case "1":				
+			case "1":								
 				System.out.println("1. Pálya betöltése");
 				System.out.println("2. Játékosok számának beállítása");
 				System.out.println("3. Játékos(ok) nevének beállítása");
 				input = br.readLine();
 				InitMenu(input);
+				nl(2);
 				break;
 			case "2":
 				System.out.println("Ütközik valamivel? (T/F)");
 				input = br.readLine();
 				WorkerMoveMenu(input);
+				nl(2);
 				break;
 			case "3":
 				System.out.println("1. Játék vége");
@@ -312,12 +319,20 @@ public class Program
 				System.out.println("3. Új játék");
 				input = br.readLine();
 				EndGameMenu(input);
+				nl(2);
 				break;
 			case "4":
-				System.out.println("Kilépés");
+				nl(2);
+				System.out.println("Kiléptél!");
+				nl(2);
 				return;
+			case "asdasd":
+				AdminMenu();
+				break;
 			default:
+				nl(2);
 				System.out.println("Hibás bemenet!");
+				nl(2);
 			}
 		}
 		
