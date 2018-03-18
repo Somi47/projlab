@@ -59,63 +59,63 @@ public class Program
 		switch(input)
 		{
 		case "1":
-			System.out.println("Pálya betöltése");
+			System.out.println("PÃ¡lya betÃ¶ltÃ©se");
 			// Load map?
 			warehouse.Initialize();
 			break;
 		case "2":
-			System.out.println("Játékosok számának beállítása");
+			System.out.println("JÃ¡tÃ©kosok szÃ¡mÃ¡nak beÃ¡llÃ­tÃ¡sa");
 			// Set worker number
-			System.out.println("Játékosok száma: (1-2)");
+			System.out.println("JÃ¡tÃ©kosok szÃ¡ma: (1-2)");
 			inner_input = br.readLine();
 			
 			if(inner_input.equals("1"))
 			{
-				System.out.println("Játékosok száma: 1");					
+				System.out.println("JÃ¡tÃ©kosok szÃ¡ma: 1");					
 				warehouse.SetWorkerNumber(1);
 				break;
 			}					
 			if(inner_input.equals("2"))
 			{
-				System.out.println("Játékosok száma: 2");
+				System.out.println("JÃ¡tÃ©kosok szÃ¡ma: 2");
 				warehouse.SetWorkerNumber(2);
 				break;
 			}					
 			else
 			{
-				System.out.println("Hibás bemenet!");
+				System.out.println("HibÃ¡s bemenet!");
 				break;
 			}					
 		case "3":
-			System.out.println("Játékos(ok) nevének beállítása");
+			System.out.println("JÃ¡tÃ©kos(ok) nevÃ©nek beÃ¡llÃ­tÃ¡sa");
 			// Set worker's name
 			if(warehouse.GetWorkerNumber() == 1)
 			{
-				System.out.println("1. játékos neve: ");
+				System.out.println("1. jÃ¡tÃ©kos neve: ");
 				inner_input = br.readLine();
 				worker1.SetName(inner_input);												
 			}
 			if(warehouse.GetWorkerNumber() == 2)
 			{
-				System.out.println("1. játékos neve: ");
+				System.out.println("1. jÃ¡tÃ©kos neve: ");
 				inner_input = br.readLine();
 				worker1.SetName(inner_input);
-				System.out.println("2. játékos neve: ");
+				System.out.println("2. jÃ¡tÃ©kos neve: ");
 				inner_input = br.readLine();
 				worker2.SetName(inner_input);
 			}
 			break;
 		default:
-			System.out.println("Hibás bemenet!");
+			System.out.println("HibÃ¡s bemenet!");
 		}
 	}
 	
 	public static void MainMenu()
 	{
-		System.out.println("1. Játék inicializálása");
-		System.out.println("2. Munkás mozgatása");
-		System.out.println("3. Játék befejezése");
-		System.out.println("4. Kilépés");
+		System.out.println("1. JÃ¡tÃ©k inicializÃ¡lÃ¡sa");
+		System.out.println("2. MunkÃ¡s mozgatÃ¡sa");
+		System.out.println("3. JÃ¡tÃ©k befejezÃ©se");
+		System.out.println("4. KilÃ©pÃ©s");
 	}
 	
 	private static void AdminMenu()
@@ -131,16 +131,16 @@ public class Program
 		
 		if(input.equalsIgnoreCase("t"))
 		{
-			System.out.println("1. Fallal ütközik");
-			System.out.println("2. Ládával ütközik");
-			System.out.println("3. Lyukkal ütközik");
-			System.out.println("4. Munkással ütközik");
-			System.out.println("5. Kapcsolóval ütközik");
+			System.out.println("1. Fallal Ã¼tkÃ¶zik");
+			System.out.println("2. LÃ¡dÃ¡val Ã¼tkÃ¶zik");
+			System.out.println("3. Lyukkal Ã¼tkÃ¶zik");
+			System.out.println("4. MunkÃ¡ssal Ã¼tkÃ¶zik");
+			System.out.println("5. KapcsolÃ³val Ã¼tkÃ¶zik");
 			inner_input = br.readLine();
 			switch(inner_input)
 			{
 			case "1":
-				System.out.println("Fallal ütközik");						
+				System.out.println("Fallal ÃœtkÃ¶zik");						
 				
 				//Worker hit wall
 				
@@ -158,7 +158,7 @@ public class Program
 				
 				break;
 			case "2":
-				System.out.println("Ládával ütközik");
+				System.out.println("LÃ¡dÃ¡val Ã¼tkÃ¶zik");
 				// Worker hit box
 				floor1.Add(worker1);
 				worker1.SetField(floor1);
@@ -177,21 +177,21 @@ public class Program
 				if(inner_input.equalsIgnoreCase("t"))
 				{
 					// Worker move box
-					System.out.println("1. Másik doboznak tolja");
-					System.out.println("2. Munkásnak tolja");
+					System.out.println("1. MÃ¡sik doboznak tolja");
+					System.out.println("2. MunkÃ¡snak tolja");
 					System.out.println("3. Falnak tolja");
 					System.out.println("4. Lyukba tolja");
-					System.out.println("5. Darálóba tolja");
-					System.out.println("6. Kapcsolóra tolja");
+					System.out.println("5. DarÃ¡lÃ³ba tolja");
+					System.out.println("6. Kapcsolï¿½ra tolja");
 					inner_input = br.readLine();
 					switch(inner_input)
 					{
 					case "1":
-						System.out.println("Másik doboznak tolja");
+						System.out.println("MÃ¡sik doboznak tolja");
 						// Worker move box hit box
 						break;
 					case "2":
-						System.out.println("Munkásnak tolja");
+						System.out.println("MunkÃ¡snak tolja");
 						// Worker move box hit worker 
 						break;
 					case "3":
@@ -203,7 +203,7 @@ public class Program
 						// Worker move box hit pit
 						break;
 					case "5":
-						System.out.println("Darálóba tolja");
+						System.out.println("DarÃ¡lÃ³ba tolja");
 						// Worker move box hit grinder
 						System.out.println("Szerez pontot? (T/F)");
 						inner_input = br.readLine();
@@ -221,7 +221,7 @@ public class Program
 						}
 						break;
 					case "6":
-						System.out.println("Kapcsolóra tolja");
+						System.out.println("Kapcsolï¿½ra tolja");
 						// Worker move box hit switch
 						break;									
 					}					
@@ -233,24 +233,24 @@ public class Program
 				}						
 				break;
 			case "3":
-				System.out.println("Lyukkal ütközik");
+				System.out.println("Lyukkal ÃœtkÃ¶zik");
 				//Worker hit pit					
 				break;
 			case "4":
-				System.out.println("Munkással ütközik");
+				System.out.println("Munkï¿½ssal ÃœtkÃ¶zik");
 				//Worker hit worker			
 				break;
 			case "5":
-				System.out.println("Kapcsolóval ütközik");					
+				System.out.println("Kapcsolï¿½val ÃœtkÃ¶zik");					
 				// Worker hit switch																					
 				break;
 			default:
-				System.out.println("Hibás bemenet!");						
+				System.out.println("HibÃ¡s bemenet!");						
 			}
 		}
 		if(input.equalsIgnoreCase("f"))
 		{
-			System.out.println("Nem ütközik semmivel");
+			System.out.println("Nem ÃœtkÃ¶zik semmivel");
 		}																
 	}
 	
@@ -259,30 +259,30 @@ public class Program
 		switch(input)
 		{
 		case "1":
-			System.out.println("Játék vége");
+			System.out.println("JÃ¡tÃ©k vÃ©ge");
 			// Call EndGame
 			warehouse.EndGame();
 			break;
 		case "2":
-			System.out.println("Eredmények kijelzése");
+			System.out.println("EredmÃ©nyek kijelzÃ©se");
 			// Show points
 			if(warehouse.GetWorkerNumber() > 1)
 			{
-				System.out.println("1. játékos pontjai: " + worker1.GetPoints());
-				System.out.println("2. játékos pontjai: " + worker2.GetPoints());
+				System.out.println("1. jÃ¡tÃ©kos pontjai: " + worker1.GetPoints());
+				System.out.println("2. jÃ¡tÃ©kos pontjai: " + worker2.GetPoints());
 				break;
 			}
 			else
 			{
-				System.out.println("1. játékos pontjai: " + worker1.GetPoints());						
+				System.out.println("1. jÃ¡tÃ©kos pontjai: " + worker1.GetPoints());						
 				break;
 			}
 		case "3":
-			System.out.println("Új játék");
+			System.out.println("Ãšj jÃ¡tÃ©k");
 			// New game
 			break;
 		default:
-			System.out.println("Hibás bemenet!");
+			System.out.println("HibÃ¡s bemenet!");
 		}								
 	}
 	
@@ -300,30 +300,30 @@ public class Program
 			switch(input)
 			{
 			case "1":								
-				System.out.println("1. Pálya betöltése");
-				System.out.println("2. Játékosok számának beállítása");
-				System.out.println("3. Játékos(ok) nevének beállítása");
+				System.out.println("1. PÃ¡lya betÃ¶ltÃ©se");
+				System.out.println("2. JÃ¡tÃ©kosok szÃ¡mÃ¡nak beÃ¡llÃ­tÃ¡sa");
+				System.out.println("3. JÃ¡tÃ©kos(ok) nevï¿½nek beÃ¡llÃ­tÃ¡sa");
 				input = br.readLine();
 				InitMenu(input);
 				nl(2);
 				break;
 			case "2":
-				System.out.println("Ütközik valamivel? (T/F)");
+				System.out.println("ÃœtkÃ¶zik valamivel? (T/F)");
 				input = br.readLine();
 				WorkerMoveMenu(input);
 				nl(2);
 				break;
 			case "3":
-				System.out.println("1. Játék vége");
-				System.out.println("2. Eredmények kijelzése");
-				System.out.println("3. Új játék");
+				System.out.println("1. JÃ¡tÃ©k vÃ©ge");
+				System.out.println("2. EredmÃ©nyek kijelzÃ©se");
+				System.out.println("3. Ãšj jÃ¡tÃ©k");
 				input = br.readLine();
 				EndGameMenu(input);
 				nl(2);
 				break;
 			case "4":
 				nl(2);
-				System.out.println("Kiléptél!");
+				System.out.println("KilÃ©ptÃ©l!");
 				nl(2);
 				return;
 			case "asdasd":
@@ -331,7 +331,7 @@ public class Program
 				break;
 			default:
 				nl(2);
-				System.out.println("Hibás bemenet!");
+				System.out.println("HibÃ¡s bemenet!");
 				nl(2);
 			}
 		}
