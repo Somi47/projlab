@@ -22,7 +22,7 @@ public abstract class Field {
 	
 	Thing thing;
 	protected Warehouse warehouse;
-	protected ArrayList<Field> neighbor = new ArrayList<Field>();
+	protected Field neighbor[] = new Field[5];
 
 	public void Add(Thing t) {
 		FunctionLogger.logFunctionCalled(toString(), "Add(Thing t)");
@@ -45,13 +45,13 @@ public abstract class Field {
 	
 	public void SetNeighbor(Direction dir, Field n) {
 		FunctionLogger.logFunctionCalled(toString(), "SetNeighbor(Direction dir, Field n)");
-		neighbor.add(dir.ordinal(),n);
+		neighbor[dir.ordinal()] = n;
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	
 	public void SetNeighbor(ArrayList<Field> f) {
 		FunctionLogger.logFunctionCalled(toString(), "SetNeighbor(ArrayList<Field> f)");
-		neighbor = f;
+		neighbor = (Field[])f.toArray();
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	
@@ -67,13 +67,13 @@ public abstract class Field {
 	
 	public Field GetNeighbor(Direction dir) {
 		FunctionLogger.logFunctionCalled(toString(), "GetNeighbor(Direction dir)");
-		return FunctionLogger.logFunctionReturn( neighbor.get(dir.ordinal()) );
+		return FunctionLogger.logFunctionReturn( neighbor[dir.ordinal()] );
 	}
 	
-	public ArrayList<Field> GetNeighbor() {
+/*	public ArrayList<Field> GetNeighbor() {
 		FunctionLogger.logFunctionCalled(toString(), "GetNeighbor()");
-		return FunctionLogger.logFunctionReturn( neighbor );
-	}
+		return FunctionLogger.logFunctionReturn( new ArrayList<Field>() );
+	}*/
 	
 	public boolean HitBy(Direction dir, Thing t) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Thing t)");
