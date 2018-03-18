@@ -19,7 +19,7 @@ public class FunctionLogger {
 	}
 	
 	// Prints the function return in a formatted way. Returns with the parameter for easier use.
-	public static <T> T logFunctionRetrun(T valueReturned) {
+	public static <T> T logFunctionReturn(T valueReturned) {
 		--tabCount;
 		printTabs();
 		System.out.println("return: "+valueReturned.toString());

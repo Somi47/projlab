@@ -20,68 +20,59 @@ public class Box extends Thing implements Moveable{
 	
 	
 	public void Destroy() {
-		FunctionLogger.logFunctionCalled("Field", "Remove()");
+		FunctionLogger.logFunctionCalled(toString(), "Destroy()");
 		GetField().Remove();
-		FunctionLogger.logFunctionCalled("Warehouse", "Remove()");
 		GetField().GetWarehouse().RemoveBox(this);
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	
 	public boolean Move(Direction dir) {
-		FunctionLogger.logFunctionCalled("FieldNeighbor", "HitBy(dir, this)");
+		FunctionLogger.logFunctionCalled(toString(), "Move(Direction dir)");
 		boolean hitBy = GetField().GetNeighbor(dir).HitBy(dir, this);
 		if(hitBy) {
-			FunctionLogger.logFunctionCalled("Field", "Remove()");
 			GetField().Remove();
-			FunctionLogger.logFunctionCalled("FieldNeighbor", "Add(this)");
 			GetField().GetNeighbor(dir).Add(this);
-			return FunctionLogger.logFunctionRetrun(true);
+			return FunctionLogger.logFunctionReturn(true);
 		}
-		return FunctionLogger.logFunctionRetrun(false);
+		return FunctionLogger.logFunctionReturn(false);
 	}
 	
 	public boolean HitBy(Direction dir, Box b) {
-		FunctionLogger.logFunctionCalled("BoxThis", "isStucked()");
+		FunctionLogger.logFunctionCalled(toString(), "Move(Direction dir)");
 		boolean stucked = isStucked();
 		if(stucked) {
-			FunctionLogger.logFunctionCalled("BoxHitBy", "CheckStucked(dir)");
 			b.CheckStucked(dir);			
-			return FunctionLogger.logFunctionRetrun(false);
+			return FunctionLogger.logFunctionReturn(false);
 		}
 		else {
-			FunctionLogger.logFunctionCalled("BoxThis", "Move(dir)");
-			return FunctionLogger.logFunctionRetrun(Move(dir));
+			return FunctionLogger.logFunctionReturn(Move(dir));
 		}
 	}
 	
 	public boolean HitBy(Direction dir, Worker w) {
-		FunctionLogger.logFunctionCalled("BoxThis", "isStucked()");
+		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
 		boolean stucked = isStucked();
 		if(stucked) { 
-			return FunctionLogger.logFunctionRetrun(false);
+			return FunctionLogger.logFunctionReturn(false);
 		}
 		else {
-			FunctionLogger.logFunctionCalled("BoxThis", "Move(dir)");
-			return FunctionLogger.logFunctionRetrun(Move(dir));
+			return FunctionLogger.logFunctionReturn(Move(dir));
 		}
 	}
 	
 	public void CheckStucked(Direction dir) {
+		FunctionLogger.logFunctionCalled(toString(), "CheckStucked(Direction dir)");
 		if(dir == Direction.Left || dir == Direction.Right)
 		{
-			FunctionLogger.logFunctionCalled("ThingUpNeighbor", "isStucked(");
 			boolean stuckedUp   = GetField().GetNeighbor(Direction.Up).GetThing().isStucked();
-			FunctionLogger.logFunctionCalled("ThingDownNeighbor", "isStucked(");
 			boolean stuckedDown = GetField().GetNeighbor(Direction.Down).GetThing().isStucked();
 			if(stuckedUp || stuckedDown)
 				SetStucked(true);
 		}
 		else // if(dir == Direction.Up || dir == Direction.Down)
 		{
-			FunctionLogger.logFunctionCalled("ThingLeftNeighbor", "isStucked(");
-			boolean stuckedLeft   = GetField().GetNeighbor(Direction.Up).GetThing().isStucked();
-			FunctionLogger.logFunctionCalled("ThingRightNeighbor", "isStucked(");
-			boolean stuckedRight = GetField().GetNeighbor(Direction.Down).GetThing().isStucked();
+			boolean stuckedLeft   = GetField().GetNeighbor(Direction.Left).GetThing().isStucked();
+			boolean stuckedRight = GetField().GetNeighbor(Direction.Right).GetThing().isStucked();
 			if(stuckedLeft || stuckedRight)
 				SetStucked(true);
 		}
