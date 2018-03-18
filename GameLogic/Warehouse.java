@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class Warehouse {
 
-	private int workerNumber;
+	private int workerNumber = 1;
 	private ArrayList<Field> fields;
 	private ArrayList<Box> boxes;
 	

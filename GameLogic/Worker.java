@@ -17,7 +17,7 @@ package GameLogic;
 public class Worker extends Thing implements Moveable {
 	
 	private String name;
-	private int points;
+	private int points = 0;
 	
 	public void SetName(String n) {
 		name = n;

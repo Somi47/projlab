@@ -1,12 +1,11 @@
 package SkeletonApp;
 
+import GameLogic.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 import Utility.FunctionLogger;
-
-
 
 public class Program {
 	
@@ -15,11 +14,26 @@ public class Program {
 	    System.out.print("\033[H\033[2J");	    
 	}  
 	
+	public static void nl(int n)
+	{
+		for(int i = 1; i < n; i++)
+		{
+			System.out.println("\n");
+		}
+	}
+	
 	public static void main(String[] args) throws IOException {
+		//Objektumok létrehozása
+		Warehouse warehouse = new Warehouse();
+		Worker worker1 = new Worker();
+		Worker worker2 = new Worker();		
+		//
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input;
 		while(true)
 		{
+			nl(1);
 			System.out.println("1. Játék inicializálása");
 			System.out.println("2. Munkás mozgatása");
 			System.out.println("3. Játék befejezése");
@@ -37,14 +51,49 @@ public class Program {
 				case "1":
 					System.out.println("Pálya betöltése");
 					// Load map?
+					warehouse.Initialize();
 					break;
 				case "2":
 					System.out.println("Játékosok számának beállítása");
 					// Set worker number
-					break;
+					System.out.println("Játékosok száma: (1-2)");
+					input = br.readLine();
+					
+					if(input.equals("1"))
+					{
+						System.out.println("Játékosok száma: 1");					
+						warehouse.SetWorkerNumber(1);
+						break;
+					}					
+					if(input.equals("2"))
+					{
+						System.out.println("Játékosok száma: 2");
+						warehouse.SetWorkerNumber(2);
+						break;
+					}					
+					else
+					{
+						System.out.println("Hibás bemenet!");
+						break;
+					}					
 				case "3":
 					System.out.println("Játékos(ok) nevének beállítása");
 					// Set worker's name
+					if(warehouse.GetWorkerNumber() == 1)
+					{
+						System.out.println("1. játékos neve: ");
+						input = br.readLine();
+						worker1.SetName(input);												
+					}
+					if(warehouse.GetWorkerNumber() == 2)
+					{
+						System.out.println("1. játékos neve: ");
+						input = br.readLine();
+						worker1.SetName(input);
+						System.out.println("2. játékos neve: ");
+						input = br.readLine();
+						worker2.SetName(input);
+					}
 					break;
 				default:
 					System.out.println("Hibás bemenet!");
@@ -209,11 +258,22 @@ public class Program {
 				case "1":
 					System.out.println("Játék vége");
 					// Call EndGame
+					warehouse.EndGame();
 					break;
 				case "2":
 					System.out.println("Eredmények kijelzése");
 					// Show points
-					break;
+					if(warehouse.GetWorkerNumber() > 1)
+					{
+						System.out.println("1. játékos pontjai: " + worker1.GetPoints());
+						System.out.println("2. játékos pontjai: " + worker2.GetPoints());
+						break;
+					}
+					else
+					{
+						System.out.println("1. játékos pontjai: " + worker1.GetPoints());						
+						break;
+					}
 				case "3":
 					System.out.println("Új játék");
 					// New game
