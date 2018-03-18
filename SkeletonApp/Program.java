@@ -4,36 +4,45 @@ import GameLogic.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 import Utility.FunctionLogger;
 
 public class Program {
 	
-	public static void cls() throws IOException {  
-	    System.out.print("\033[H\033[2J");  
-	    System.out.print("\033[H\033[2J");	    
+	public static void cls() throws IOException 
+	{  
+	    System.out.print("\033[H\033[2J");  	    
 	}  
 	
 	public static void nl(int n)
-	{
+	{			
 		for(int i = 1; i < n; i++)
 		{
 			System.out.println("\n");
 		}
 	}
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException 
+	{
 		//Objektumok létrehozása
 		Warehouse warehouse = new Warehouse();
 		Worker worker1 = new Worker();
-		Worker worker2 = new Worker();		
+		Worker worker2 = new Worker();	
+		Floor floor1 = new Floor();
+		Floor floor2 = new Floor();
+		Box box1 = new Box();
+		Box box2 = new Box();
+		Grinder grinder1 = new Grinder();
+		Pit pit1 = new Pit();
+		Switch switch1 = new Switch();
+		Wall wall1 = new Wall();
+		
 		//
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input;
 		while(true)
 		{
-			nl(1);
+			nl(3);
 			System.out.println("1. Játék inicializálása");
 			System.out.println("2. Munkás mozgatása");
 			System.out.println("3. Játék befejezése");
@@ -117,7 +126,8 @@ public class Program {
 						input = br.readLine();
 						if(input.equalsIgnoreCase("t"))
 						{
-							//Worker hit wall fgv
+							//Worker hit wall fgv							
+							wall1.HitBy(Direction.Right, worker1);
 						}
 						if(input.equalsIgnoreCase("f"))
 						{
@@ -170,6 +180,7 @@ public class Program {
 									{
 										System.out.println("Pontot szerez");
 										// points++
+										
 										break;
 									}
 									if(input.equalsIgnoreCase("f"))
@@ -230,6 +241,7 @@ public class Program {
 						if(input.equalsIgnoreCase("t"))
 						{
 							//Worker hit switch
+							
 							break;
 						}
 						if(input.equalsIgnoreCase("f"))
