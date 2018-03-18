@@ -22,7 +22,7 @@ public abstract class Field {
 	
 	Thing thing;
 	protected Warehouse warehouse;
-	protected ArrayList<Field> neighbor;
+	protected ArrayList<Field> neighbor = new ArrayList<Field>();
 
 	public void Add(Thing t) {
 		FunctionLogger.logFunctionCalled(toString(), "Add(Thing t)");

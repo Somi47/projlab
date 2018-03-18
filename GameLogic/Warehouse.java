@@ -21,8 +21,8 @@ import Utility.FunctionLogger;
 public class Warehouse {
 
 	private int workerNumber = 1;
-	private ArrayList<Field> fields;
-	private ArrayList<Box> boxes;
+	private ArrayList<Field> fields = new ArrayList<Field>();
+	private ArrayList<Box> boxes = new ArrayList<Box>();
 	
 	public void SetWorkerNumber(int n) {
 		FunctionLogger.logFunctionCalled(toString(), "SetWorkerNumber(int n)");
