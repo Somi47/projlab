@@ -29,7 +29,6 @@ public class Box extends Thing implements Moveable{
 	public boolean Move(Direction dir) {
 		FunctionLogger.logFunctionCalled(toString(), "Move(Direction dir)");
 		boolean canMove = GetField().GetNeighbor(dir).HitBy(dir, this);
-		canMove = FunctionLogger.askUserDecision("El tudja-e tolni?"); // Csak a skeleton működéshez
 		if(canMove) {
 			GetField().Remove();
 			GetField().GetNeighbor(dir).Add(this);
@@ -38,8 +37,9 @@ public class Box extends Thing implements Moveable{
 		return FunctionLogger.logFunctionReturn(false);
 	}
 	
+	@Override
 	public boolean HitBy(Direction dir, Box b) {
-		FunctionLogger.logFunctionCalled(toString(), "Move(Direction dir)");
+		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
 		boolean stucked = isStucked();
 		if(stucked) {
 			b.CheckStucked(dir);			
@@ -50,6 +50,7 @@ public class Box extends Thing implements Moveable{
 		}
 	}
 	
+	@Override
 	public boolean HitBy(Direction dir, Worker w) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
 		boolean stucked = isStucked();
@@ -64,16 +65,53 @@ public class Box extends Thing implements Moveable{
 	public void CheckStucked(Direction dir) {
 		FunctionLogger.logFunctionCalled(toString(), "CheckStucked(Direction dir)");
 		if(dir == Direction.Left || dir == Direction.Right)
-		{
-			boolean stuckedUp   = GetField().GetNeighbor(Direction.Up).GetThing().isStucked();
-			boolean stuckedDown = GetField().GetNeighbor(Direction.Down).GetThing().isStucked();
+		{			
+			boolean stuckedUp  =  true;
+			Field upNeighbor = GetField().GetNeighbor(Direction.Up);
+			if(upNeighbor != null)
+			{
+				if(upNeighbor.GetThing() != null)
+				{
+					stuckedUp = upNeighbor.GetThing().isStucked();
+				}
+			}
+			
+			boolean stuckedDown  =  true;
+			Field downNeighbor = GetField().GetNeighbor(Direction.Down);
+			if(downNeighbor != null)
+			{
+				if(downNeighbor.GetThing() != null)
+				{
+					stuckedUp = downNeighbor.GetThing().isStucked();
+				}
+			}
+			
 			if(stuckedUp || stuckedDown)
 				SetStucked(true);
 		}
 		else // if(dir == Direction.Up || dir == Direction.Down)
 		{
-			boolean stuckedLeft   = GetField().GetNeighbor(Direction.Left).GetThing().isStucked();
-			boolean stuckedRight = GetField().GetNeighbor(Direction.Right).GetThing().isStucked();
+			boolean stuckedLeft  =  true;
+			Field leftNeighbor = GetField().GetNeighbor(Direction.Left);
+			if(leftNeighbor != null)
+			{
+				if(leftNeighbor.GetThing() != null)
+				{
+					stuckedLeft = leftNeighbor.GetThing().isStucked();
+				}
+			}
+			
+			boolean stuckedRight  =  true;
+			Field rightNeighbor = GetField().GetNeighbor(Direction.Right);
+			if(rightNeighbor != null)
+			{
+				if(rightNeighbor.GetThing() != null)
+				{
+					stuckedRight = rightNeighbor.GetThing().isStucked();
+				}
+			}
+			
+			
 			if(stuckedLeft || stuckedRight)
 				SetStucked(true);
 		}

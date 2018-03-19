@@ -19,10 +19,17 @@ import Utility.FunctionLogger;
 public class Floor extends Field {
 	
 	
-	public boolean HitBy(Direction dir, Thing t) {
-		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Thing t)");
+	public boolean HitBy(Direction dir, Worker w) {
+		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
 		if(GetThing() != null)
-			return FunctionLogger.logFunctionReturn( GetThing().HitBy(dir, t) );
+			return FunctionLogger.logFunctionReturn( GetThing().HitBy(dir, w) );
+		return FunctionLogger.logFunctionReturn( true );
+	}
+	
+	public boolean HitBy(Direction dir, Box b) {
+		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
+		if(GetThing() != null)
+			return FunctionLogger.logFunctionReturn( GetThing().HitBy(dir, b) );
 		return FunctionLogger.logFunctionReturn( true );
 	}
 }

@@ -53,7 +53,6 @@ public class Worker extends Thing implements Moveable {
 	public boolean Move(Direction dir) {
 		FunctionLogger.logFunctionCalled(toString(), "Move(Direction dir)");
 		boolean canMove = GetField().GetNeighbor(dir).HitBy(dir, this);
-		canMove = FunctionLogger.askUserDecision("El tudja-e tolni?"); // Csak a skeleton működéshez
 		if(canMove) {
 			GetField().Remove();
 			GetField().GetNeighbor(dir).Add(this);
@@ -62,6 +61,7 @@ public class Worker extends Thing implements Moveable {
 		return FunctionLogger.logFunctionReturn( false );
 	}
 	
+	@Override
 	public boolean HitBy(Direction dir, Box b) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
 		if(!Move(dir))
@@ -69,6 +69,7 @@ public class Worker extends Thing implements Moveable {
 		return FunctionLogger.logFunctionReturn( true );
 	}
 	
+	@Override
 	public boolean HitBy(Direction dir, Worker w) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
 		return FunctionLogger.logFunctionReturn( false );

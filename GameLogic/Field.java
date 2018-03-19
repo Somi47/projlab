@@ -76,10 +76,17 @@ public abstract class Field extends DebuggedClass {
 		return FunctionLogger.logFunctionReturn( new ArrayList<Field>() );
 	}*/
 	
-	public boolean HitBy(Direction dir, Thing t) {
-		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Thing t)");
+	public boolean HitBy(Direction dir, Worker w) {
+		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
 		if(thing != null)
-			return FunctionLogger.logFunctionReturn( thing.HitBy(dir, t) );
+			return FunctionLogger.logFunctionReturn( thing.HitBy(dir, w) );
+		return FunctionLogger.logFunctionReturn( true );
+	}
+	
+	public boolean HitBy(Direction dir, Box b) {
+		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
+		if(thing != null)
+			return FunctionLogger.logFunctionReturn( thing.HitBy(dir, b) );
 		return FunctionLogger.logFunctionReturn( true );
 	}
 }

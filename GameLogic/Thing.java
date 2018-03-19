@@ -18,7 +18,7 @@ import Utility.FunctionLogger;
 
 
 public abstract class Thing extends DebuggedClass {
-	private boolean stucked;
+	private boolean stucked = false;
 	private Field field;
 
 	public void SetField(Field f) {
@@ -43,8 +43,13 @@ public abstract class Thing extends DebuggedClass {
 		return FunctionLogger.logFunctionReturn( stucked );
 	}
 	
-	public boolean HitBy(Direction dir, Thing t) {
-		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Thing t)");
+	public boolean HitBy(Direction dir, Worker w) {
+		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
+		return FunctionLogger.logFunctionReturn( true );
+	}
+	
+	public boolean HitBy(Direction dir, Box b) {
+		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
 		return FunctionLogger.logFunctionReturn( true );
 	}
 }

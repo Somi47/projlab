@@ -22,7 +22,8 @@ public class FunctionLogger {
 	public static <T> T logFunctionReturn(T valueReturned) {
 		--tabCount;
 		printTabs();
-		System.out.println("return: "+valueReturned.toString());
+		if(valueReturned != null)
+			System.out.println("return: "+valueReturned.toString());
 		return valueReturned;
 	}
 	
