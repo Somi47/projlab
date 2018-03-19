@@ -232,22 +232,15 @@ public class Program
 					
 					floor3.Add(worker2);
 					worker2.SetField(floor3);
-					
-					if(FunctionLogger.askUserDecision("El tudja-e tolni?"))
-					{
-						worker2.SetStucked(false);
-					}
-					else
-					{
-						worker2.SetStucked(true);
-					}
-															
+																				
 					floor1.SetNeighbor(Direction.Up, floor2);
 					floor2.SetNeighbor(Direction.Down, floor1);
 					floor3.SetNeighbor(Direction.Down, floor2);
 					floor2.SetNeighbor(Direction.Up, floor3);
 					floor4.SetNeighbor(Direction.Down, floor3);
 					floor3.SetNeighbor(Direction.Up, floor4);
+					
+					floor3.SetWarehouse(warehouse);
 					
 					worker1.Move(Direction.Up);	
 					
@@ -433,6 +426,7 @@ public class Program
 		case "3":
 			System.out.println("Új játék");
 			// New game
+			warehouse.Initialize();
 			break;
 		default:
 			System.out.println("Hibás bemenet!");

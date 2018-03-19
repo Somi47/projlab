@@ -33,7 +33,7 @@ public class FunctionLogger {
 		
 		while(true) { // Until we get a valid input.
 			printTabs();
-			System.out.print(question+" (Yes/No): ");
+			System.out.print(question+" (T/F): ");
 			
 			String input = "";
 			try {
@@ -42,10 +42,10 @@ public class FunctionLogger {
 				continue;
 			}
 			
-			if(input.toLowerCase().equals("yes")) {
+			if(input.toLowerCase().equals("t")) {
 				return true;
 			}
-			else if(input.toLowerCase().equals("no")){
+			else if(input.toLowerCase().equals("f")){
 				return false;
 			}
 			// else: We did not get a valid answer.			

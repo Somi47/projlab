@@ -64,7 +64,9 @@ public class Worker extends Thing implements Moveable {
 	@Override
 	public boolean HitBy(Direction dir, Box b) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
-		if(!Move(dir))
+		boolean canMove = Move(dir);
+		canMove = FunctionLogger.askUserDecision("Tud-e mozogni?");
+		if(!canMove)
 			Die();
 		return FunctionLogger.logFunctionReturn( true );
 	}
