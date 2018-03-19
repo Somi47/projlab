@@ -23,6 +23,9 @@ public class Program
 	static Floor floor3;
 	static Floor floor4;
 	
+	/* Inicializálja a statikus objektumokat.
+	 * Bármely tesztesetet is futtatunk, ezt meg kell hívni.
+	 */
 	private static void InitializeStatic()
 	{
 		warehouse = new Warehouse();
@@ -53,7 +56,8 @@ public class Program
 		wall1.SetDbgName("wall1");
 	}
 
-	
+	/* Kiír a paraméterben kappot számú üres sort
+	 */
 	public static void nl(int n)
 	{			
 		for(int i = 1; i < n; i++)
@@ -62,6 +66,8 @@ public class Program
 		}
 	}
 	
+	/* Inicializációs folyamatokat tesztelő menü.
+	 */
 	public static void InitMenu(String input) throws IOException
 	{			
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -121,6 +127,8 @@ public class Program
 		}
 	}
 	
+	/* A Skeleton program főmenüje.
+	 */
 	public static void MainMenu()
 	{
 		System.out.println("1. Játék inicializálása");
@@ -129,11 +137,15 @@ public class Program
 		System.out.println("4. Kilépés");
 	}
 	
+	/* Adminisztrátori menü.
+	 */
 	private static void AdminMenu()
 	{
 		
 	}
 	
+	/* Munkás mozgatási folyamatokat tesztelő menü.
+	 */
 	public static void WorkerMoveMenu(String input) throws IOException
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -397,7 +409,8 @@ public class Program
 			System.out.println("Nem Ütközik semmivel");
 		}																
 	}
-	
+	/* Játék vége folyamatokat tesztelő menü.
+	 */
 	public static void EndGameMenu(String input)
 	{	
 		switch(input)
@@ -431,6 +444,8 @@ public class Program
 		}								
 	}
 	
+	/* SkeletonApp belépési pontja.
+	 */
 	public static void main(String[] args) throws IOException 
 	{
 		InitializeStatic();		
