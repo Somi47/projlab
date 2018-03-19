@@ -54,11 +54,6 @@ public class Program
 	}
 
 	
-	public static void cls() throws IOException 
-	{  
-	    System.out.print("\033[H\033[2J");  	    
-	}  
-	
 	public static void nl(int n)
 	{			
 		for(int i = 1; i < n; i++)
@@ -76,7 +71,7 @@ public class Program
 		{
 		case "1":
 			System.out.println("Pálya betöltése");
-			// Load map?
+			// Load game
 			warehouse.Initialize();
 			break;
 		case "2":
@@ -136,8 +131,7 @@ public class Program
 	
 	private static void AdminMenu()
 	{
-		System.out.println(worker1.GetName());
-		System.out.println(worker2.GetName());
+		
 	}
 	
 	public static void WorkerMoveMenu(String input) throws IOException
