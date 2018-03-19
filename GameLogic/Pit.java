@@ -44,7 +44,7 @@ public class Pit extends Field {
 		if(GetThing() != null)
 			if(GetThing().HitBy(dir, b))
 				if(open) {
-					b.Destroy();;
+					b.Destroy();
 					return FunctionLogger.logFunctionReturn( true );
 				}
 				else
@@ -52,6 +52,10 @@ public class Pit extends Field {
 			else
 				return FunctionLogger.logFunctionReturn( false );
 		else
+			if(open)
+			{
+				b.Destroy();
+			}
 			return FunctionLogger.logFunctionReturn( true );
 	}
 }

@@ -30,12 +30,13 @@ public class Switch extends Field {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
 		if(GetThing() != null)
 			if(GetThing().HitBy(dir, w)) {
-					pit.SetOpen(false);;
+					pit.SetOpen(false);
 					return FunctionLogger.logFunctionReturn( true );
 			}
 			else
 				return FunctionLogger.logFunctionReturn( false );
 		else
+			pit.SetOpen(false);
 			return FunctionLogger.logFunctionReturn( true );
 	}
 	
@@ -47,12 +48,13 @@ public class Switch extends Field {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
 		if(GetThing() != null)
 			if(GetThing().HitBy(dir, b)) {
-					pit.SetOpen(true);;
+					pit.SetOpen(true);
 					return FunctionLogger.logFunctionReturn( true );
 			}
 			else
 				return FunctionLogger.logFunctionReturn( false );
 		else
+			pit.SetOpen(true);
 			return FunctionLogger.logFunctionReturn( true );
 	}
 }

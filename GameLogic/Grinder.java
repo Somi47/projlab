@@ -7,7 +7,7 @@ import Utility.FunctionLogger;
  */
 public class Grinder extends Field {
 	
-	private Worker player;
+	private Worker player = new Worker();
 	
 	/* Daráló játékosának beálltása */
 	public void SetPlayer(Worker p) {
@@ -29,14 +29,14 @@ public class Grinder extends Field {
 	public boolean HitBy(Direction dir, Box b) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
 		if(GetThing() != null)
-			if(GetThing().HitBy(dir, b)) {
-				this.player.AddPoint();
+			if(GetThing().HitBy(dir, b)) {;
 				b.Destroy();
 				return FunctionLogger.logFunctionReturn( true );
 			}
 			else
 				return FunctionLogger.logFunctionReturn( false );
 		else
+			b.Destroy();
 			return FunctionLogger.logFunctionReturn( true );
 	}
 	

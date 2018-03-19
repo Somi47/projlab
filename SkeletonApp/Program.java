@@ -273,6 +273,8 @@ public class Program
 				case "4":
 					System.out.println("Lyukba tolja");
 					// Worker move box hit pit
+					pit1.SetOpen(FunctionLogger.askUserDecision("Nyitva van a lyuk?"));
+					
 					floor1.Add(worker1);
 					worker1.SetField(floor1);
 					
@@ -283,6 +285,8 @@ public class Program
 										
 					floor2.Add(box1);
 					box1.SetField(floor2);
+															
+					floor2.SetWarehouse(warehouse);
 					
 					worker1.Move(Direction.Up);					
 					break;
@@ -299,6 +303,7 @@ public class Program
 										
 					floor2.Add(box1);
 					box1.SetField(floor2);
+					floor2.SetWarehouse(warehouse);
 					
 					worker1.Move(Direction.Up);
 					
@@ -329,8 +334,9 @@ public class Program
 					floor2.SetNeighbor(Direction.Up, switch1);
 										
 					floor2.Add(box1);
-					box1.SetField(floor2);									
+					box1.SetField(floor2);										
 					
+					switch1.SetPit(pit1);					
 					worker1.Move(Direction.Up);
 					break;									
 				case "7":
