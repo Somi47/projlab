@@ -1,17 +1,58 @@
 package SkeletonApp;
 
 import GameLogic.*;
+import Utility.FunctionLogger;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import Utility.FunctionLogger;
 
-public class Program {
+public class Program 
+{	
+	static Warehouse warehouse;
+	static Worker worker1;
+	static Worker worker2;
+	static Box box1;
+	static Box box2;
+	static Grinder grinder1;
+	static Pit pit1;
+	static Switch switch1;
+	static Wall wall1;
+	static Floor floor1;
+	static Floor floor2;
+	static Floor floor3;
+	static Floor floor4;
 	
-	public static void cls() throws IOException 
-	{  
-	    System.out.print("\033[H\033[2J");  	    
-	}  
+	private static void InitializeStatic()
+	{
+		warehouse = new Warehouse();
+		warehouse.SetDbgName("warehouse");
+		worker1 = new Worker();
+		worker1.SetDbgName("worker1");
+		worker2 = new Worker();
+		worker2.SetDbgName("worker2");
+		floor1 = new Floor();
+		floor1.SetDbgName("floor1");
+		floor2 = new Floor();
+		floor2.SetDbgName("floor2");
+		floor3 = new Floor();
+		floor3.SetDbgName("floor3");
+		floor4 = new Floor();
+		floor4.SetDbgName("floor4");
+		box1 = new Box();
+		box1.SetDbgName("box1");
+		box2 = new Box();
+		box2.SetDbgName("box2");
+		grinder1 = new Grinder();
+		grinder1.SetDbgName("grinder1");
+		pit1 = new Pit();
+		pit1.SetDbgName("pit1");
+		switch1 = new Switch();
+		switch1.SetDbgName("switch1");
+		wall1 = new Wall();
+		wall1.SetDbgName("wall1");
+	}
+
 	
 	public static void nl(int n)
 	{			
@@ -21,285 +62,420 @@ public class Program {
 		}
 	}
 	
+	public static void InitMenu(String input) throws IOException
+	{			
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String inner_input;
+		
+		switch(input)
+		{
+		case "1":
+			System.out.println("PÃ¡lya betÃ¶ltÃ©se");
+			// Load game
+			warehouse.Initialize();
+			break;
+		case "2":
+			System.out.println("JÃ¡tÃ©kosok szÃ¡mÃ¡nak beÃ¡llÃ­tÃ¡sa");
+			// Set worker number
+			System.out.println("JÃ¡tÃ©kosok szÃ¡ma: (1-2)");
+			inner_input = br.readLine();
+			
+			if(inner_input.equals("1"))
+			{
+				System.out.println("JÃ¡tÃ©kosok szÃ¡ma: 1");					
+				warehouse.SetWorkerNumber(1);
+				break;
+			}					
+			if(inner_input.equals("2"))
+			{
+				System.out.println("JÃ¡tÃ©kosok szÃ¡ma: 2");
+				warehouse.SetWorkerNumber(2);
+				break;
+			}					
+			else
+			{
+				System.out.println("HibÃ¡s bemenet!");
+				break;
+			}					
+		case "3":
+			System.out.println("JÃ¡tÃ©kos(ok) nevÃ©nek beÃ¡llÃ­tÃ¡sa");
+			// Set worker's name
+			if(warehouse.GetWorkerNumber() == 1)
+			{
+				System.out.println("1. jÃ¡tÃ©kos neve: ");
+				inner_input = br.readLine();
+				worker1.SetName(inner_input);												
+			}
+			if(warehouse.GetWorkerNumber() == 2)
+			{
+				System.out.println("1. jÃ¡tÃ©kos neve: ");
+				inner_input = br.readLine();
+				worker1.SetName(inner_input);
+				System.out.println("2. jÃ¡tÃ©kos neve: ");
+				inner_input = br.readLine();
+				worker2.SetName(inner_input);
+			}
+			break;
+		default:
+			System.out.println("HibÃ¡s bemenet!");
+		}
+	}
+	
+	public static void MainMenu()
+	{
+		System.out.println("1. JÃ¡tÃ©k inicializÃ¡lÃ¡sa");
+		System.out.println("2. MunkÃ¡s mozgatÃ¡sa");
+		System.out.println("3. JÃ¡tÃ©k befejezÃ©se");
+		System.out.println("4. KilÃ©pÃ©s");
+	}
+	
+	private static void AdminMenu()
+	{
+		
+	}
+	
+	public static void WorkerMoveMenu(String input) throws IOException
+	{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String inner_input;	
+		
+		if(input.equalsIgnoreCase("t"))
+		{
+			System.out.println("1. Fallal Ã¼tkÃ¶zik");
+			System.out.println("2. LÃ¡dÃ¡val Ã¼tkÃ¶zik");
+			System.out.println("3. Lyukkal Ã¼tkÃ¶zik");
+			System.out.println("4. MunkÃ¡ssal Ã¼tkÃ¶zik");
+			System.out.println("5. KapcsolÃ³val Ã¼tkÃ¶zik");
+			inner_input = br.readLine();
+			switch(inner_input)
+			{
+			case "1":
+				System.out.println("Fallal ÃœtkÃ¶zik");						
+				
+				//Worker hit wall
+				
+				floor1.Add(worker1);
+				worker1.SetField(floor1);
+				
+				floor1.SetNeighbor(Direction.Up, floor2);
+				floor2.SetNeighbor(Direction.Down, floor1);
+				
+				floor2.Add(wall1);
+				wall1.SetField(floor2);
+				
+				wall1.HitBy(Direction.Right, worker1);
+				worker1.Move(Direction.Up);
+				
+				break;
+			case "2":
+				System.out.println("LÃ¡dÃ¡val Ã¼tkÃ¶zik");
+				// Worker hit box
+				
+				// Worker move box
+				System.out.println("1. MÃ¡sik doboznak tolja");
+				System.out.println("2. MunkÃ¡snak tolja");
+				System.out.println("3. Falnak tolja");
+				System.out.println("4. Lyukba tolja");
+				System.out.println("5. DarÃ¡lÃ³ba tolja");
+				System.out.println("6. KapcsolÃ³ra tolja");
+				System.out.println("7. Ãœres padlÃ³ra tolja");
+				inner_input = br.readLine();
+				switch(inner_input)
+				{
+				case "1":
+					System.out.println("MÃ¡sik doboznak tolja");
+					// Worker move box hit box
+					floor1.Add(worker1);
+					worker1.SetField(floor1);
+					
+					floor2.Add(box1);					
+					box1.SetField(floor2);
+					box1.SetStucked(false);
+					
+					
+					floor3.Add(box2);
+					box2.SetField(floor3);
+					
+					if(FunctionLogger.askUserDecision("El tudja-e tolni?"))
+					{
+						box2.SetStucked(false);
+					}
+					else
+					{
+						box2.SetStucked(true);
+					}									
+					
+					floor1.SetNeighbor(Direction.Up, floor2);
+					floor2.SetNeighbor(Direction.Down, floor1);
+					floor3.SetNeighbor(Direction.Down, floor2);
+					floor2.SetNeighbor(Direction.Up, floor3);
+					floor4.SetNeighbor(Direction.Down, floor3);
+					floor3.SetNeighbor(Direction.Up, floor4);
+					
+					worker1.Move(Direction.Up);																			
+					break;
+				case "2":
+					System.out.println("MunkÃ¡snak tolja");
+					// Worker move box hit worker 
+					floor1.Add(worker1);
+					worker1.SetField(floor1);
+					
+					floor2.Add(box1);					
+					box1.SetField(floor2);
+					box1.SetStucked(false);					
+					
+					floor3.Add(worker2);
+					worker2.SetField(floor3);
+																				
+					floor1.SetNeighbor(Direction.Up, floor2);
+					floor2.SetNeighbor(Direction.Down, floor1);
+					floor3.SetNeighbor(Direction.Down, floor2);
+					floor2.SetNeighbor(Direction.Up, floor3);
+					floor4.SetNeighbor(Direction.Down, floor3);
+					floor3.SetNeighbor(Direction.Up, floor4);
+					
+					floor3.SetWarehouse(warehouse);
+					
+					worker1.Move(Direction.Up);	
+					
+					break;
+				case "3":
+					System.out.println("Falnak tolja");
+					// Worker move box hit wall
+					floor1.Add(worker1);
+					worker1.SetField(floor1);
+					
+					floor1.SetNeighbor(Direction.Up, floor2);
+					floor2.SetNeighbor(Direction.Down, floor1);
+					floor3.SetNeighbor(Direction.Down, floor2);
+					floor2.SetNeighbor(Direction.Up,floor3);
+					
+					floor3.Add(wall1);
+					wall1.SetField(floor3);
+					
+					floor2.Add(box1);
+					box1.SetField(floor2);
+					
+					worker1.Move(Direction.Up);
+					break;
+				case "4":
+					System.out.println("Lyukba tolja");
+					// Worker move box hit pit
+					floor1.Add(worker1);
+					worker1.SetField(floor1);
+					
+					floor1.SetNeighbor(Direction.Up, floor2);
+					floor2.SetNeighbor(Direction.Down, floor1);
+					pit1.SetNeighbor(Direction.Down, floor2);
+					floor2.SetNeighbor(Direction.Up,pit1);
+										
+					floor2.Add(box1);
+					box1.SetField(floor2);
+					
+					worker1.Move(Direction.Up);					
+					break;
+				case "5":
+					System.out.println("DarÃ¡lÃ³ba tolja");
+					// Worker move box hit grinder
+					floor1.Add(worker1);
+					worker1.SetField(floor1);
+					
+					floor1.SetNeighbor(Direction.Up, floor2);
+					floor2.SetNeighbor(Direction.Down, floor1);
+					grinder1.SetNeighbor(Direction.Down, floor2);
+					floor2.SetNeighbor(Direction.Up, grinder1);
+										
+					floor2.Add(box1);
+					box1.SetField(floor2);
+					
+					worker1.Move(Direction.Up);
+					
+					System.out.println("Szerez pontot? (T/F)");
+					inner_input = br.readLine();
+					if(inner_input.equalsIgnoreCase("t"))
+					{
+						System.out.println("Pontot szerez");
+						// points++
+						worker1.AddPoint();									
+						break;
+					}
+					if(input.equalsIgnoreCase("f"))
+					{
+						System.out.println("Nem szerez pontot");
+						break;
+					}
+					break;
+				case "6":
+					System.out.println("KapcsolÃ³ra tolja");
+					// Worker move box hit switch
+					floor1.Add(worker1);
+					worker1.SetField(floor1);
+					
+					floor1.SetNeighbor(Direction.Up, floor2);
+					floor2.SetNeighbor(Direction.Down, floor1);
+					switch1.SetNeighbor(Direction.Down, floor2);
+					floor2.SetNeighbor(Direction.Up, switch1);
+										
+					floor2.Add(box1);
+					box1.SetField(floor2);									
+					
+					worker1.Move(Direction.Up);
+					break;									
+				case "7":
+					floor1.Add(worker1);
+					worker1.SetField(floor1);
+					
+					floor1.SetNeighbor(Direction.Up, floor2);
+					floor2.SetNeighbor(Direction.Down, floor1);
+					floor3.SetNeighbor(Direction.Down, floor2);
+					floor2.SetNeighbor(Direction.Up, floor3);
+					
+					floor2.Add(box1);
+					box1.SetField(floor2);
+					
+					worker1.Move(Direction.Up);
+					break;
+				default:
+					System.out.println("HibÃ¡s bemenet!");
+				}
+				
+				break;
+			case "3":
+				System.out.println("Lyukkal ÃœtkÃ¶zik");
+				//Worker hit pit	
+				floor1.Add(worker1);
+				worker1.SetField(floor1);
+				
+				pit1.SetOpen(FunctionLogger.askUserDecision("Nyitva van a lyuk?"));
+								
+				floor1.SetNeighbor(Direction.Up, pit1);
+				pit1.SetNeighbor(Direction.Down, floor1);
+				
+				floor1.SetWarehouse(warehouse);
+												
+				worker1.Move(Direction.Up);				
+				break;
+			case "4":
+				System.out.println("MunkÃ¡ssal ÃœtkÃ¶zik");
+				//Worker hit worker		
+				floor1.Add(worker1);
+				worker1.SetField(floor1);
+				
+				floor1.SetNeighbor(Direction.Up, floor2);
+				floor2.SetNeighbor(Direction.Down, floor1);
+				
+				floor2.Add(worker2);
+				worker2.SetField(floor2);
+							
+				worker1.Move(Direction.Up);
+				break;
+			case "5":
+				System.out.println("KapcsolÃ³val ÃœtkÃ¶zik");					
+				// Worker hit switch	
+				floor1.Add(worker1);
+				worker1.SetField(floor1);
+				
+				floor1.SetNeighbor(Direction.Up, switch1);
+				switch1.SetNeighbor(Direction.Down, floor1);
+												
+				worker1.Move(Direction.Up);
+				break;
+			default:
+				System.out.println("HibÃ¡s bemenet!");						
+			}
+		}
+		if(input.equalsIgnoreCase("f"))
+		{
+			floor1.Add(worker1);
+			worker1.SetField(floor1);
+			
+			floor1.SetNeighbor(Direction.Up, floor2);
+			floor2.SetNeighbor(Direction.Down, floor1);
+			floor2.Remove();
+			
+			worker1.Move(Direction.Up);
+			System.out.println("Nem ÃœtkÃ¶zik semmivel");
+		}																
+	}
+	
+	public static void EndGameMenu(String input)
+	{	
+		switch(input)
+		{
+		case "1":
+			System.out.println("JÃ¡tÃ©k vÃ©ge");
+			// Call EndGame
+			warehouse.EndGame();
+			break;
+		case "2":
+			System.out.println("EredmÃ©nyek kijelzÃ©se");
+			// Show points
+			if(warehouse.GetWorkerNumber() > 1)
+			{
+				System.out.println("1. jÃ¡tÃ©kos pontjai: " + worker1.GetPoints());
+				System.out.println("2. jÃ¡tÃ©kos pontjai: " + worker2.GetPoints());
+				break;
+			}
+			else
+			{
+				System.out.println("1. jÃ¡tÃ©kos pontjai: " + worker1.GetPoints());						
+				break;
+			}
+		case "3":
+			System.out.println("Ãšj jÃ¡tÃ©k");
+			// New game
+			warehouse.Initialize();
+			break;
+		default:
+			System.out.println("HibÃ¡s bemenet!");
+		}								
+	}
+	
 	public static void main(String[] args) throws IOException 
 	{
-		//Objektumok létrehozása
-		Warehouse warehouse = new Warehouse();
-		Worker worker1 = new Worker();
-		Worker worker2 = new Worker();	
-		Floor floor1 = new Floor();
-		Floor floor2 = new Floor();
-		Box box1 = new Box();
-		Box box2 = new Box();
-		Grinder grinder1 = new Grinder();
-		Pit pit1 = new Pit();
-		Switch switch1 = new Switch();
-		Wall wall1 = new Wall();
-		
-		//
+		InitializeStatic();		
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input;
-		while(true)
-		{
-			nl(3);
-			System.out.println("1. Játék inicializálása");
-			System.out.println("2. Munkás mozgatása");
-			System.out.println("3. Játék befejezése");
-			System.out.println("4. Kilépés");
-			input = br.readLine();
-			switch(input)
-			{
-			case "1":
-				System.out.println("1. Pálya betöltése");
-				System.out.println("2. Játékosok számának beállítása");
-				System.out.println("3. Játékos(ok) nevének beállítása");
-				input = br.readLine();
-				switch(input)
-				{
-				case "1":
-					System.out.println("Pálya betöltése");
-					// Load map?
-					warehouse.Initialize();
-					break;
-				case "2":
-					System.out.println("Játékosok számának beállítása");
-					// Set worker number
-					System.out.println("Játékosok száma: (1-2)");
-					input = br.readLine();
 					
-					if(input.equals("1"))
-					{
-						System.out.println("Játékosok száma: 1");					
-						warehouse.SetWorkerNumber(1);
-						break;
-					}					
-					if(input.equals("2"))
-					{
-						System.out.println("Játékosok száma: 2");
-						warehouse.SetWorkerNumber(2);
-						break;
-					}					
-					else
-					{
-						System.out.println("Hibás bemenet!");
-						break;
-					}					
-				case "3":
-					System.out.println("Játékos(ok) nevének beállítása");
-					// Set worker's name
-					if(warehouse.GetWorkerNumber() == 1)
-					{
-						System.out.println("1. játékos neve: ");
-						input = br.readLine();
-						worker1.SetName(input);												
-					}
-					if(warehouse.GetWorkerNumber() == 2)
-					{
-						System.out.println("1. játékos neve: ");
-						input = br.readLine();
-						worker1.SetName(input);
-						System.out.println("2. játékos neve: ");
-						input = br.readLine();
-						worker2.SetName(input);
-					}
-					break;
-				default:
-					System.out.println("Hibás bemenet!");
-				}
-				break;
-			case "2":
-				System.out.println("Ütközik valamivel? (T/F)");
-				input = br.readLine();
-				if(input.equalsIgnoreCase("t"))
-				{
-					System.out.println("1. Fallal ütközik");
-					System.out.println("2. Ládával ütközik");
-					System.out.println("3. Lyukkal ütközik");
-					System.out.println("4. Munkással ütközik");
-					System.out.println("5. Kapcsolóval ütközik");
-					input = br.readLine();
-					switch(input)
-					{
-					case "1":
-						System.out.println("Fallal ütközik? (T/F)");
-						input = br.readLine();
-						if(input.equalsIgnoreCase("t"))
-						{
-							//Worker hit wall fgv							
-							wall1.HitBy(Direction.Right, worker1);
-						}
-						if(input.equalsIgnoreCase("f"))
-						{
-							System.out.println("Nem ütközik fallal");
-							break;
-						}
-						break;
-					case "2":
-						System.out.println("Ládával ütközik? (T/F)");
-						input = br.readLine();
-						if(input.equalsIgnoreCase("t"))
-						{
-							// Worker hit box
-							System.out.println("El tudja tolni? (T/F)");
-							input = br.readLine();
-							if(input.equalsIgnoreCase("t"))
-							{
-								// Worker move box
-								System.out.println("1. Másik doboznak tolja");
-								System.out.println("2. Munkásnak tolja");
-								System.out.println("3. Falnak tolja");
-								System.out.println("4. Lyukba tolja");
-								System.out.println("5. Darálóba tolja");
-								System.out.println("6. Kapcsolóra tolja");
-								input = br.readLine();
-								switch(input)
-								{
-								case "1":
-									System.out.println("Doboznak tolja");
-									// Worker move box hit box
-									break;
-								case "2":
-									System.out.println("Munkásnak tolja");
-									// Worker move box hit worker 
-									break;
-								case "3":
-									System.out.println("Falnak tolja");
-									// Worker move box hit wall
-									break;
-								case "4":
-									System.out.println("Lyukba tolja");
-									// Worker move box hit pit
-									break;
-								case "5":
-									System.out.println("Darálóba tolja");
-									// Worker move box hit grinder
-									System.out.println("Szerez pontot? (T/F)");
-									input = br.readLine();
-									if(input.equalsIgnoreCase("t"))
-									{
-										System.out.println("Pontot szerez");
-										// points++
-										
-										break;
-									}
-									if(input.equalsIgnoreCase("f"))
-									{
-										System.out.println("Nem szerez pontot");
-										break;
-									}
-									break;
-								case "6":
-									System.out.println("Kapcsolóra tolja");
-									// Worker move box hit switch
-									break;									
-								}
-							}
-							if(input.equalsIgnoreCase("f"))
-							{
-								System.out.println("Nem tudja eltolni");
-								break;
-							}
-						}
-						if(input.equalsIgnoreCase("f"))
-						{
-							System.out.println("Nem ütközik ládával");
-							break;
-						}				
-						break;
-					case "3":
-						System.out.println("Lyukkal ütközik? (T/F)");
-						input = br.readLine();
-						if(input.equalsIgnoreCase("t"))
-						{
-							//Worker hit pit
-							break;
-						}
-						if(input.equalsIgnoreCase("f"))
-						{
-							System.out.println("Nem ütközik lyukkal");
-							break;
-						}						
-						break;
-					case "4":
-						System.out.println("Munkással ütközik? (T/F)");
-						input = br.readLine();
-						if(input.equalsIgnoreCase("t"))
-						{
-							//Worker hit worker
-							break;
-						}
-						if(input.equalsIgnoreCase("f"))
-						{
-							System.out.println("Nem ütközik munnkással");
-							break;
-						}				
-						break;
-					case "5":
-						System.out.println("Kapcsolóval ütközik? (T/F)");
-						input = br.readLine();
-						if(input.equalsIgnoreCase("t"))
-						{
-							//Worker hit switch
-							
-							break;
-						}
-						if(input.equalsIgnoreCase("f"))
-						{
-							System.out.println("Nem ütközik kapcsolóval");
-							break;
-						}				
-						break;
-					default:
-						System.out.println("Hibás bemenet!");						
-					}
-				}
-				if(input.equalsIgnoreCase("f"))
-				{
-					System.out.println("Nem ütközik semmivel");
-					break;
-				}													
-				break;				
-			case "3":
-				System.out.println("1. Játék vége");
-				System.out.println("2. Eredmények kijelzése");
-				System.out.println("3. Új játék");
-				input = br.readLine();
-				switch(input)
-				{
-				case "1":
-					System.out.println("Játék vége");
-					// Call EndGame
-					warehouse.EndGame();
-					break;
-				case "2":
-					System.out.println("Eredmények kijelzése");
-					// Show points
-					if(warehouse.GetWorkerNumber() > 1)
-					{
-						System.out.println("1. játékos pontjai: " + worker1.GetPoints());
-						System.out.println("2. játékos pontjai: " + worker2.GetPoints());
-						break;
-					}
-					else
-					{
-						System.out.println("1. játékos pontjai: " + worker1.GetPoints());						
-						break;
-					}
-				case "3":
-					System.out.println("Új játék");
-					// New game
-					break;
-				default:
-					System.out.println("Hibás bemenet!");
-				}								
-				break;
-			case "4":
-				System.out.println("Kilépés");
-				return;
-			default:
-				System.out.println("Hibás bemenet!");
-			}
+		MainMenu();
+		input = br.readLine();
+		switch(input)
+		{
+		case "1":								
+			System.out.println("1. PÃ¡lya betÃ¶ltÃ©se");
+			System.out.println("2. JÃ¡tÃ©kosok szÃ¡mÃ¡nak beÃ¡llÃ­tÃ¡sa");
+			System.out.println("3. JÃ¡tÃ©kos(ok) nevï¿½nek beÃ¡llÃ­tÃ¡sa");
+			input = br.readLine();
+			InitMenu(input);
+			nl(2);
+			break;
+		case "2":
+			System.out.println("ÃœtkÃ¶zik valamivel? (T/F)");
+			input = br.readLine();
+			WorkerMoveMenu(input);
+			nl(2);
+			break;
+		case "3":
+			System.out.println("1. JÃ¡tÃ©k vÃ©ge");
+			System.out.println("2. EredmÃ©nyek kijelzÃ©se");
+			System.out.println("3. Ãšj jÃ¡tÃ©k");
+			input = br.readLine();
+			EndGameMenu(input);
+			nl(2);
+			break;
+		case "4":
+			nl(2);
+			System.out.println("KilÃ©ptÃ©l!");
+			nl(2);
+			return;
+		case "asdasd":
+			AdminMenu();
+			break;
+		default:
+			nl(2);
+			System.out.println("HibÃ¡s bemenet!");
+			nl(2);
 		}
 		
 		
