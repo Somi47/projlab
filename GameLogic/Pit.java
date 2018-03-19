@@ -33,18 +33,11 @@ public class Pit extends Field {
 	
 	public boolean HitBy(Direction dir, Worker w) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
-		if(GetThing() != null)
-			if(GetThing().HitBy(dir, w))
-				if(open) {
-					w.Die();
-					return FunctionLogger.logFunctionReturn( true );
-				}
-				else
-					return FunctionLogger.logFunctionReturn( true );
-			else
-				return FunctionLogger.logFunctionReturn( false );
-		else
-			return FunctionLogger.logFunctionReturn( true );
+		if(open) 
+		{
+			w.Die();
+		}
+		return FunctionLogger.logFunctionReturn( true );
 	}
 	
 	public boolean HitBy(Direction dir, Box b) {

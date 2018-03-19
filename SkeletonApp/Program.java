@@ -352,8 +352,12 @@ public class Program
 				floor1.Add(worker1);
 				worker1.SetField(floor1);
 				
+				pit1.SetOpen(FunctionLogger.askUserDecision("Nyitva van a lyuk?"));
+								
 				floor1.SetNeighbor(Direction.Up, pit1);
 				pit1.SetNeighbor(Direction.Down, floor1);
+				
+				floor1.SetWarehouse(warehouse);
 												
 				worker1.Move(Direction.Up);				
 				break;
