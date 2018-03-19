@@ -77,12 +77,14 @@ public class Program
 		{
 		case "1":
 			System.out.println("Pálya betöltése");
-			// Load game
+			/* A Warehouse inicializálja a játékot. 
+			 */
 			warehouse.Initialize();
 			break;
 		case "2":
 			System.out.println("Játékosok számának beállítása");
-			// Set worker number
+			/* Játékosok számának beállítása, 1 vagy 2 lehet játékos lehet.
+			 */
 			System.out.println("Játékosok száma: (1-2)");
 			inner_input = br.readLine();
 			
@@ -105,7 +107,8 @@ public class Program
 			}					
 		case "3":
 			System.out.println("Játékos(ok) nevének beállítása");
-			// Set worker's name
+			/* Játékosok neveit állíthatjuk be. 
+			 */
 			if(warehouse.GetWorkerNumber() == 1)
 			{
 				System.out.println("1. játékos neve: ");
@@ -164,7 +167,12 @@ public class Program
 			case "1":
 				System.out.println("Fallal Ütközik");						
 				
-				//Worker hit wall
+				/* Munkás fallal való ütköztetése.
+				 * Hozzáadja a munkást a mezőhöz, beállítja a munkás mezezejét.
+				 * Beállítja az 1. mezőt a 2. mező szomszédjának és fordítva is.
+				 * A 2. mezőre falat helyez, és a fal mezejét beállítja a 2. mezőre.
+				 * Ütközteti a falat a munkással.
+				 */
 				
 				floor1.Add(worker1);
 				worker1.SetField(floor1);
@@ -181,9 +189,7 @@ public class Program
 				break;
 			case "2":
 				System.out.println("Ládával ütközik");
-				// Worker hit box
 				
-				// Worker move box
 				System.out.println("1. Másik doboznak tolja");
 				System.out.println("2. Munkásnak tolja");
 				System.out.println("3. Falnak tolja");
@@ -196,7 +202,8 @@ public class Program
 				{
 				case "1":
 					System.out.println("Másik doboznak tolja");
-					// Worker move box hit box
+					/* A munkás maga elött tol egy dobozt, amit egy másik doboznak tol.					 
+					 */
 					floor1.Add(worker1);
 					worker1.SetField(floor1);
 					
@@ -228,7 +235,10 @@ public class Program
 					break;
 				case "2":
 					System.out.println("Munkásnak tolja");
-					// Worker move box hit worker 
+					
+					/* A munkás maga elött tol egy dobozt, amit egy másik munkásnak tol.					 
+					 */
+					
 					floor1.Add(worker1);
 					worker1.SetField(floor1);
 					
@@ -253,7 +263,10 @@ public class Program
 					break;
 				case "3":
 					System.out.println("Falnak tolja");
-					// Worker move box hit wall
+
+					/* A munkás maga elött tol egy dobozt, amit egy falnak tol.					 
+					 */
+					
 					floor1.Add(worker1);
 					worker1.SetField(floor1);
 					
@@ -272,7 +285,10 @@ public class Program
 					break;
 				case "4":
 					System.out.println("Lyukba tolja");
-					// Worker move box hit pit
+					
+					/* A munkás maga elött tol egy dobozt, amit egy lyukba tol.					 
+					 */
+					
 					pit1.SetOpen(FunctionLogger.askUserDecision("Nyitva van a lyuk?"));
 					
 					floor1.Add(worker1);
@@ -292,7 +308,10 @@ public class Program
 					break;
 				case "5":
 					System.out.println("Darálóba tolja");
-					// Worker move box hit grinder
+
+					/* A munkás maga elött tol egy dobozt, amit egy darálóba tol.									 
+					 */
+					
 					floor1.Add(worker1);
 					worker1.SetField(floor1);
 					
@@ -312,7 +331,9 @@ public class Program
 					if(inner_input.equalsIgnoreCase("t"))
 					{
 						System.out.println("Pontot szerez");
-						// points++
+						
+						/* A munkás pontot kap a darálóba tolt dobozért.						 
+						 */
 						worker1.AddPoint();									
 						break;
 					}
@@ -324,7 +345,11 @@ public class Program
 					break;
 				case "6":
 					System.out.println("Kapcsolóra tolja");
-					// Worker move box hit switch
+					
+					/* A munkás maga elött tol egy dobozt, amit egy kapcsolóra tol.			
+					 * A kapcsoló aktivál egy lyukat.		 
+					 */
+					
 					floor1.Add(worker1);
 					worker1.SetField(floor1);
 					
@@ -340,6 +365,11 @@ public class Program
 					worker1.Move(Direction.Up);
 					break;									
 				case "7":
+					System.out.println("Üres padlóra tolja");
+					
+					/* A munkás maga elött tol egy dobozt, amit egy üres mezőre tol.				 
+					 */
+					
 					floor1.Add(worker1);
 					worker1.SetField(floor1);
 					
@@ -360,7 +390,11 @@ public class Program
 				break;
 			case "3":
 				System.out.println("Lyukkal Ütközik");
-				//Worker hit pit	
+				
+				/* A munkás rálép egy lyukra.
+				 * Ha a lyuk nyitva van, akkor a munkás beleesik és meghal.				 
+				 */
+				
 				floor1.Add(worker1);
 				worker1.SetField(floor1);
 				
@@ -375,7 +409,10 @@ public class Program
 				break;
 			case "4":
 				System.out.println("Munkással Ütközik");
-				//Worker hit worker		
+				
+				/* A munkás egy másik munkással ütközik.				 				 
+				 */
+				
 				floor1.Add(worker1);
 				worker1.SetField(floor1);
 				
@@ -389,7 +426,10 @@ public class Program
 				break;
 			case "5":
 				System.out.println("Kapcsolóval Ütközik");					
-				// Worker hit switch	
+
+				/* A munkás egy kapcsolóval ütközik.				 
+				 */
+				
 				floor1.Add(worker1);
 				worker1.SetField(floor1);
 				
@@ -423,12 +463,18 @@ public class Program
 		{
 		case "1":
 			System.out.println("Játék vége");
-			// Call EndGame
+			
+			/* A Warehouse véget vet a játéknak
+			 */
+			
 			warehouse.EndGame();
 			break;
 		case "2":
 			System.out.println("Eredmények kijelzése");
-			// Show points
+			
+			/* Lekérdezi a Warehouse-tól az eredményeket.			 
+			 */
+			
 			if(warehouse.GetWorkerNumber() > 1)
 			{
 				System.out.println("1. játékos pontjai: " + worker1.GetPoints());
@@ -442,7 +488,9 @@ public class Program
 			}
 		case "3":
 			System.out.println("Új játék");
-			// New game
+			
+			/* Új játék indítása			 
+			 */
 			warehouse.Initialize();
 			break;
 		default:
