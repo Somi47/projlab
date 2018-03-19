@@ -9,7 +9,7 @@ import Utility.FunctionLogger;
 //  @ Project : 6projlab
 //  @ File Name : Box.java
 //  @ Date : 2018.03.17.
-//  @ Author : Gy�ngy�si P�ter
+//  @ Author : Gyöngyösi Péter
 //
 //
 
@@ -28,8 +28,9 @@ public class Box extends Thing implements Moveable{
 	
 	public boolean Move(Direction dir) {
 		FunctionLogger.logFunctionCalled(toString(), "Move(Direction dir)");
-		boolean hitBy = GetField().GetNeighbor(dir).HitBy(dir, this);
-		if(hitBy) {
+		boolean canMove = GetField().GetNeighbor(dir).HitBy(dir, this);
+		canMove = FunctionLogger.askUserDecision("El tudja-e tolni?"); // Csak a skeleton működéshez
+		if(canMove) {
 			GetField().Remove();
 			GetField().GetNeighbor(dir).Add(this);
 			return FunctionLogger.logFunctionReturn(true);
