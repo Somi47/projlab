@@ -1,5 +1,6 @@
 package GameLogic;
 
+import Utility.DebuggedClass;
 import Utility.FunctionLogger;
 
 //
@@ -16,8 +17,7 @@ import Utility.FunctionLogger;
 
 
 
-public abstract class Thing {
-
+public abstract class Thing extends DebuggedClass {
 	private boolean stucked;
 	private Field field;
 

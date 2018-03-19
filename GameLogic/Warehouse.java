@@ -2,6 +2,7 @@ package GameLogic;
 
 import java.util.ArrayList;
 
+import Utility.DebuggedClass;
 import Utility.FunctionLogger;
 
 //
@@ -18,7 +19,7 @@ import Utility.FunctionLogger;
 
 
 
-public class Warehouse {
+public class Warehouse extends DebuggedClass {
 
 	private int workerNumber = 1;
 	private ArrayList<Field> fields = new ArrayList<Field>();

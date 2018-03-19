@@ -4,7 +4,6 @@ import GameLogic.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import Utility.FunctionLogger;
 
 public class Program 
 {	
@@ -20,19 +19,30 @@ public class Program
 	static Floor floor1;
 	static Floor floor2;
 	
-	Program()
+	private static void InitializeStatic()
 	{
 		warehouse = new Warehouse();
+		warehouse.SetDbgName("warehouse");
 		worker1 = new Worker();
-		worker2 = new Worker();	
+		worker1.SetDbgName("worker1");
+		worker2 = new Worker();
+		worker2.SetDbgName("worker2");
 		floor1 = new Floor();
+		floor1.SetDbgName("floor1");
 		floor2 = new Floor();
+		floor2.SetDbgName("floor2");
 		box1 = new Box();
+		box1.SetDbgName("box1");
 		box2 = new Box();
+		box2.SetDbgName("box2");
 		grinder1 = new Grinder();
+		grinder1.SetDbgName("grinder1");
 		pit1 = new Pit();
+		pit1.SetDbgName("pit1");
 		switch1 = new Switch();
+		switch1.SetDbgName("switch1");
 		wall1 = new Wall();
+		wall1.SetDbgName("wall1");
 	}
 
 	
@@ -48,8 +58,6 @@ public class Program
 			System.out.println("\n");
 		}
 	}
-	
-
 	
 	public static void InitMenu(String input) throws IOException
 	{			
@@ -288,7 +296,7 @@ public class Program
 	
 	public static void main(String[] args) throws IOException 
 	{
-		Program p = new Program();		
+		InitializeStatic();		
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String input;

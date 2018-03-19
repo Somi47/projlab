@@ -2,6 +2,7 @@ package GameLogic;
 
 import java.util.ArrayList;
 
+import Utility.DebuggedClass;
 import Utility.FunctionLogger;
 
 //
@@ -18,7 +19,7 @@ import Utility.FunctionLogger;
 
 
 
-public abstract class Field {
+public abstract class Field extends DebuggedClass {
 	
 	Thing thing;
 	protected Warehouse warehouse;
