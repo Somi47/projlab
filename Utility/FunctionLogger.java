@@ -19,11 +19,10 @@ public class FunctionLogger {
 	}
 	
 	// Prints the function return in a formatted way. Returns with the parameter for easier use.
-	public static <T> T logFunctionReturn(T valueReturned) {
+	public static <T> T logFunctionRetrun(T valueReturned) {
 		--tabCount;
 		printTabs();
-		if(valueReturned != null)
-			System.out.println("return: "+valueReturned.toString());
+		System.out.println("return: "+valueReturned.toString());
 		return valueReturned;
 	}
 	
@@ -33,7 +32,7 @@ public class FunctionLogger {
 		
 		while(true) { // Until we get a valid input.
 			printTabs();
-			System.out.print(question+" (T/F): ");
+			System.out.print(question+" (Yes/No): ");
 			
 			String input = "";
 			try {
@@ -42,10 +41,10 @@ public class FunctionLogger {
 				continue;
 			}
 			
-			if(input.toLowerCase().equals("t")) {
+			if(input.toLowerCase().equals("yes")) {
 				return true;
 			}
-			else if(input.toLowerCase().equals("f")){
+			else if(input.toLowerCase().equals("no")){
 				return false;
 			}
 			// else: We did not get a valid answer.			
