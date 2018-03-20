@@ -22,9 +22,12 @@ public class Box extends Thing implements Moveable{
 	 * álló dologgal ütközteti a dobozt. Ha mozoghat, a szomszédos
 	 * mezõre lépteti.
 	 */
-	public boolean Move(Direction dir) {
+	public boolean Move(Direction dir, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "Move(Direction dir)");
-		boolean canMove = GetField().GetNeighbor(dir).HitBy(dir, this);
+		if(force<0)
+			return FunctionLogger.logFunctionReturn(false);
+		
+		boolean canMove = GetField().GetNeighbor(dir).HitBy(dir, this, force);
 		if(canMove) {
 			GetField().Remove();
 			GetField().GetNeighbor(dir).Add(this);
@@ -39,7 +42,7 @@ public class Box extends Thing implements Moveable{
 	 * ha mozoghat arra igazzal tér vissza. 
 	 */
 	@Override
-	public boolean HitBy(Direction dir, Box b) {
+	public boolean HitBy(Direction dir, Box b, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
 		boolean stucked = isStucked();
 		if(stucked) {
@@ -47,7 +50,7 @@ public class Box extends Thing implements Moveable{
 			return FunctionLogger.logFunctionReturn(false);
 		}
 		else {
-			return FunctionLogger.logFunctionReturn(Move(dir));
+			return FunctionLogger.logFunctionReturn(Move(dir, force - GetField().friction));
 		}
 	}
 	
@@ -56,14 +59,14 @@ public class Box extends Thing implements Moveable{
 	 * utáni mozgás eredényével tér vissza. 
 	 */
 	@Override
-	public boolean HitBy(Direction dir, Worker w) {
+	public boolean HitBy(Direction dir, Worker w, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
 		boolean stucked = isStucked();
 		if(stucked) { 
 			return FunctionLogger.logFunctionReturn(false);
 		}
 		else {
-			return FunctionLogger.logFunctionReturn(Move(dir));
+			return FunctionLogger.logFunctionReturn(Move(dir, force - GetField().friction));
 		}
 	}
 	

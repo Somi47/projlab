@@ -26,10 +26,10 @@ public class Switch extends Field {
 	 * Ha van rajta valami ütközteti vele. Ha ráléphet bezárja
 	 * a hozzá tartozó lyukat.
 	 */
-	public boolean HitBy(Direction dir, Worker w) {
+	public boolean HitBy(Direction dir, Worker w, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
 		if(GetThing() != null)
-			if(GetThing().HitBy(dir, w)) {
+			if(GetThing().HitBy(dir, w, force)) {
 					pit.SetOpen(false);
 					return FunctionLogger.logFunctionReturn( true );
 			}
@@ -44,10 +44,10 @@ public class Switch extends Field {
 	 * Ha van rajta valami ütközteti vele. Ha ráléphet kinyitja
 	 * a hozzá tartozó lyukat.
 	 */
-	public boolean HitBy(Direction dir, Box b) {
+	public boolean HitBy(Direction dir, Box b, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
 		if(GetThing() != null)
-			if(GetThing().HitBy(dir, b)) {
+			if(GetThing().HitBy(dir, b, force)) {
 					pit.SetOpen(true);
 					return FunctionLogger.logFunctionReturn( true );
 			}

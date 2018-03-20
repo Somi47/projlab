@@ -15,7 +15,8 @@ public abstract class Field extends DebuggedClass {
 	Thing thing;
 	protected Warehouse warehouse;
 	protected Field neighbor[] = new Field[5];
-
+	public int friction = 0;
+	
 	/* Dolog mezõre helyezése. */
 	public void Add(Thing t) {
 		FunctionLogger.logFunctionCalled(toString(), "Add(Thing t)");
@@ -80,17 +81,17 @@ public abstract class Field extends DebuggedClass {
 	 * Meghívja a dologra az ütköztetõ függvényt és
 	 * visszaadja ennek eredményét. 
 	 */
-	public boolean HitBy(Direction dir, Worker w) {
+	public boolean HitBy(Direction dir, Worker w, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
 		if(thing != null)
-			return FunctionLogger.logFunctionReturn( thing.HitBy(dir, w) );
+			return FunctionLogger.logFunctionReturn( thing.HitBy(dir, w, force) );
 		return FunctionLogger.logFunctionReturn( true );
 	}
 	
-	public boolean HitBy(Direction dir, Box b) {
+	public boolean HitBy(Direction dir, Box b, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
 		if(thing != null)
-			return FunctionLogger.logFunctionReturn( thing.HitBy(dir, b) );
+			return FunctionLogger.logFunctionReturn( thing.HitBy(dir, b, force) );
 		return FunctionLogger.logFunctionReturn( true );
 	}
 }

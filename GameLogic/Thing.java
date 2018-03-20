@@ -41,7 +41,7 @@ public abstract class Thing extends DebuggedClass {
 	/* Dolognak adott irányból egy munkás ütközik.
 	 * Alapból igazt ad vissza. 
 	 */
-	public boolean HitBy(Direction dir, Worker w) {
+	public boolean HitBy(Direction dir, Worker w, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
 		return FunctionLogger.logFunctionReturn( true );
 	}
@@ -49,7 +49,7 @@ public abstract class Thing extends DebuggedClass {
 	/* Dolognak adott irányból egy másik doboz ütközik.
 	 * Alapból igazt ad vissza. 
 	 */
-	public boolean HitBy(Direction dir, Box b) {
+	public boolean HitBy(Direction dir, Box b, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
 		return FunctionLogger.logFunctionReturn( true );
 	}

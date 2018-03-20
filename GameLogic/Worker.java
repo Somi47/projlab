@@ -49,9 +49,9 @@ public class Worker extends Thing implements Moveable {
 	/* Munkás adott irányba mozgatása.
 	 * Ha mozoghat az adott irányba, akkor mezõváltás.
 	 */
-	public boolean Move(Direction dir) {
+	public boolean Move(Direction dir, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "Move(Direction dir)");
-		boolean canMove = GetField().GetNeighbor(dir).HitBy(dir, this);
+		boolean canMove = GetField().GetNeighbor(dir).HitBy(dir, this, force);
 		if(canMove) {
 			GetField().Remove();
 			GetField().GetNeighbor(dir).Add(this);
@@ -64,9 +64,9 @@ public class Worker extends Thing implements Moveable {
 	 * Ha a munkás nem mozoghat tovább az adott irányba meghal. 
 	 */
 	@Override
-	public boolean HitBy(Direction dir, Box b) {
+	public boolean HitBy(Direction dir, Box b, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
-		boolean canMove = Move(dir);
+		boolean canMove = Move(dir, force);
 		canMove = FunctionLogger.askUserDecision("Tud-e mozogni?");
 		if(!canMove)
 			Die();
@@ -77,7 +77,7 @@ public class Worker extends Thing implements Moveable {
 	 * Hamissal tér vissza. 
 	 */
 	@Override
-	public boolean HitBy(Direction dir, Worker w) {
+	public boolean HitBy(Direction dir, Worker w, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
 		return FunctionLogger.logFunctionReturn( false );
 	}

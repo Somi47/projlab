@@ -26,10 +26,10 @@ public class Grinder extends Field {
 	 * Ütközteti az esetleg rajta lévõ dologgal, majd ha a
 	 * doboz tolható, bedarálja azt és a saját játékosának pontot ad.
 	 * */
-	public boolean HitBy(Direction dir, Box b) {
+	public boolean HitBy(Direction dir, Box b, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
 		if(GetThing() != null)
-			if(GetThing().HitBy(dir, b)) {;
+			if(GetThing().HitBy(dir, b, force)) {;
 				b.Destroy();
 				return FunctionLogger.logFunctionReturn( true );
 			}
@@ -43,10 +43,10 @@ public class Grinder extends Field {
 	/* Darálónak adott irányba munkás ütközik.
 	 * Ha áll rajta valami, ütközteti vele.
 	 */
-	public boolean HitBy(Direction dir, Worker w) {
+	public boolean HitBy(Direction dir, Worker w, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
 		if(GetThing() != null)
-			return FunctionLogger.logFunctionReturn( GetThing().HitBy(dir, w) );
+			return FunctionLogger.logFunctionReturn( GetThing().HitBy(dir, w, force) );
 		return FunctionLogger.logFunctionReturn( true );
 	}
 }

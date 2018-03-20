@@ -26,7 +26,7 @@ public class Pit extends Field {
 	 * Ha van rajta dolog ütközteti vele. Ha ráléphet és
 	 * nyitva van, megöli a játékost. 
 	 */
-	public boolean HitBy(Direction dir, Worker w) {
+	public boolean HitBy(Direction dir, Worker w, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
 		if(open) 
 		{
@@ -39,10 +39,10 @@ public class Pit extends Field {
 	 * Ha van rajta dolog ütközteti vele. Ha ráléphet és
 	 * nyitva van, elpusztítja a dobozt. 
 	 */
-	public boolean HitBy(Direction dir, Box b) {
+	public boolean HitBy(Direction dir, Box b, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
 		if(GetThing() != null)
-			if(GetThing().HitBy(dir, b))
+			if(GetThing().HitBy(dir, b, force))
 				if(open) {
 					b.Destroy();
 					return FunctionLogger.logFunctionReturn( true );
