@@ -15,7 +15,22 @@ public abstract class Field extends DebuggedClass {
 	Thing thing;
 	protected Warehouse warehouse;
 	protected Field neighbor[] = new Field[5];
-	public int friction = 0;
+	
+	/* Mezõ súrlódása
+	 * Alapból 2, ha mézes 5, ha olajas 0
+	 * (ezt még állítgathatjuk)
+	 */
+	protected int friction = 2;
+	
+	/* Súrlódás beállítása */
+	public void setFriction(int f) {
+		friction = f;
+	}
+	
+	/* Súrlódás lekérdezése */
+	public int getFriction() {
+		return friction;
+	}
 	
 	/* Dolog mezõre helyezése. */
 	public void Add(Thing t) {

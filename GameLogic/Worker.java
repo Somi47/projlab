@@ -9,6 +9,27 @@ public class Worker extends Thing implements Moveable {
 	
 	private String name;
 	private int points = 0;
+	private int Force = 6;
+	
+	/* Munkás erejének beállítása */
+	public void setForce(int f) {
+		Force = f;
+	}
+	
+	/* Munkás erejének lekérdezése */
+	public int getForce() {
+		return Force;
+	}
+	
+	/* Munkás mézet tesz a mezőre amin áll, azaz növeli a súrlódását */
+	public void dropHoney() {
+		GetField().setFriction(5);
+	}
+	
+	/* Munkás olajat tesz a mezőre amin áll, azaz csökkenti a súrlódását */
+	public void dropOil() {
+		GetField().setFriction(0);
+	}
 	
 	/* Munkás nevének beállítása */
 	public void SetName(String n) {

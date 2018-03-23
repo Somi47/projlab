@@ -125,6 +125,26 @@ public class Program
 				worker2.SetName(inner_input);
 			}
 			break;
+		case "4":
+			System.out.println("Játékos(ok) erejének beállítása");
+			/* Játékosok erejét állíthatjuk be. 
+			 */
+			if(warehouse.GetWorkerNumber() == 1)
+			{
+				System.out.println("1. játékos ereje: ");
+				inner_input = br.readLine();
+				worker1.setForce(Integer.parseInt(inner_input));												
+			}
+			if(warehouse.GetWorkerNumber() == 2)
+			{
+				System.out.println("1. játékos ereje: ");
+				inner_input = br.readLine();
+				worker1.setForce(Integer.parseInt(inner_input));
+				System.out.println("2. játékos ereje: ");
+				inner_input = br.readLine();
+				worker2.setForce(Integer.parseInt(inner_input));
+			}
+			break;
 		default:
 			System.out.println("Hibás bemenet!");
 		}
@@ -183,8 +203,8 @@ public class Program
 				floor2.Add(wall1);
 				wall1.SetField(floor2);
 				
-				wall1.HitBy(Direction.Right, worker1);
-				worker1.Move(Direction.Up);
+				wall1.HitBy(Direction.Right, worker1, worker1.getForce());
+				worker1.Move(Direction.Up, worker1.getForce());
 				
 				break;
 			case "2":
@@ -231,7 +251,7 @@ public class Program
 					floor4.SetNeighbor(Direction.Down, floor3);
 					floor3.SetNeighbor(Direction.Up, floor4);
 					
-					worker1.Move(Direction.Up);																			
+					worker1.Move(Direction.Up, worker1.getForce());																			
 					break;
 				case "2":
 					System.out.println("Munkásnak tolja");
@@ -258,7 +278,7 @@ public class Program
 					
 					floor3.SetWarehouse(warehouse);
 					
-					worker1.Move(Direction.Up);	
+					worker1.Move(Direction.Up, worker1.getForce());	
 					
 					break;
 				case "3":
@@ -281,7 +301,7 @@ public class Program
 					floor2.Add(box1);
 					box1.SetField(floor2);
 					
-					worker1.Move(Direction.Up);
+					worker1.Move(Direction.Up, worker1.getForce());
 					break;
 				case "4":
 					System.out.println("Lyukba tolja");
@@ -304,7 +324,7 @@ public class Program
 															
 					floor2.SetWarehouse(warehouse);
 					
-					worker1.Move(Direction.Up);					
+					worker1.Move(Direction.Up, worker1.getForce());					
 					break;
 				case "5":
 					System.out.println("Darálóba tolja");
@@ -324,7 +344,7 @@ public class Program
 					box1.SetField(floor2);
 					floor2.SetWarehouse(warehouse);
 					
-					worker1.Move(Direction.Up);
+					worker1.Move(Direction.Up, worker1.getForce());
 					
 					System.out.println("Szerez pontot? (T/F)");
 					inner_input = br.readLine();
@@ -362,7 +382,7 @@ public class Program
 					box1.SetField(floor2);										
 					
 					switch1.SetPit(pit1);					
-					worker1.Move(Direction.Up);
+					worker1.Move(Direction.Up, worker1.getForce());
 					break;									
 				case "7":
 					System.out.println("Üres padlóra tolja");
@@ -381,7 +401,7 @@ public class Program
 					floor2.Add(box1);
 					box1.SetField(floor2);
 					
-					worker1.Move(Direction.Up);
+					worker1.Move(Direction.Up, worker1.getForce());
 					break;
 				default:
 					System.out.println("Hibás bemenet!");
@@ -405,7 +425,7 @@ public class Program
 				
 				floor1.SetWarehouse(warehouse);
 												
-				worker1.Move(Direction.Up);				
+				worker1.Move(Direction.Up, worker1.getForce());				
 				break;
 			case "4":
 				System.out.println("Munkással Ütközik");
@@ -422,7 +442,7 @@ public class Program
 				floor2.Add(worker2);
 				worker2.SetField(floor2);
 							
-				worker1.Move(Direction.Up);
+				worker1.Move(Direction.Up, worker1.getForce());
 				break;
 			case "5":
 				System.out.println("Kapcsolóval Ütközik");					
@@ -436,7 +456,7 @@ public class Program
 				floor1.SetNeighbor(Direction.Up, switch1);
 				switch1.SetNeighbor(Direction.Down, floor1);
 												
-				worker1.Move(Direction.Up);
+				worker1.Move(Direction.Up, worker1.getForce());
 				break;
 			default:
 				System.out.println("Hibás bemenet!");						
@@ -451,7 +471,7 @@ public class Program
 			floor2.SetNeighbor(Direction.Down, floor1);
 			floor2.Remove();
 			
-			worker1.Move(Direction.Up);
+			worker1.Move(Direction.Up, worker1.getForce());
 			System.out.println("Nem Ütközik semmivel");
 		}																
 	}
@@ -515,6 +535,7 @@ public class Program
 			System.out.println("1. Pálya betöltése");
 			System.out.println("2. Játékosok számának beállítása");
 			System.out.println("3. Játékos(ok) nev�nek beállítása");
+			System.out.println("4. Játékos(ok) erejének beállítása");
 			input = br.readLine();
 			InitMenu(input);
 			nl(2);

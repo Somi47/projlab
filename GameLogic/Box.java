@@ -50,7 +50,7 @@ public class Box extends Thing implements Moveable{
 			return FunctionLogger.logFunctionReturn(false);
 		}
 		else {
-			return FunctionLogger.logFunctionReturn(Move(dir, force - GetField().friction));
+			return FunctionLogger.logFunctionReturn(Move(dir, force - GetField().getFriction()));
 		}
 	}
 	
@@ -66,7 +66,7 @@ public class Box extends Thing implements Moveable{
 			return FunctionLogger.logFunctionReturn(false);
 		}
 		else {
-			return FunctionLogger.logFunctionReturn(Move(dir, force - GetField().friction));
+			return FunctionLogger.logFunctionReturn(Move(dir, force - GetField().getFriction()));
 		}
 	}
 	
