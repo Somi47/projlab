@@ -13,6 +13,7 @@ public abstract class Field extends DebuggedClass {
 	 * a szomszédait. 
 	 */
 	Thing thing;
+	protected int x,y;
 	protected Warehouse warehouse;
 	protected Field neighbor[] = new Field[5];
 	
@@ -30,6 +31,22 @@ public abstract class Field extends DebuggedClass {
 	/* Súrlódás lekérdezése */
 	public int getFriction() {
 		return friction;
+	}
+	
+	/* Mezõ koordinátáinak beállítása */
+	public void setcoordinates(int X, int Y) {
+		x = X;
+		y = Y;
+	}
+	
+	/* x koordináta lekérdezése */
+	public int GetX() {
+		return x;
+	}
+	
+	/* y koordináta lekérdezése */
+	public int GetY() {
+		return y;
 	}
 	
 	/* Dolog mezõre helyezése. */
@@ -96,6 +113,7 @@ public abstract class Field extends DebuggedClass {
 	 * Meghívja a dologra az ütköztetõ függvényt és
 	 * visszaadja ennek eredményét. 
 	 */
+	
 	public boolean HitBy(Direction dir, Worker w, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Worker w)");
 		if(thing != null)

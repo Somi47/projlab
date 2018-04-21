@@ -12,8 +12,40 @@ import Utility.FunctionLogger;
 public class Warehouse extends DebuggedClass {
 
 	private int workerNumber = 1;
-	private ArrayList<Field> fields = new ArrayList<Field>();
+	private Field[][] fields;
 	private ArrayList<Box> boxes = new ArrayList<Box>();
+	
+	/* Harom parameteres konstruktor */
+	public Warehouse(int x, int y, int wn){
+		fields = new Field[x][y];
+		SetWorkerNumber(wn);
+	}
+	
+	/* Mezõ felvétele a raktárba */
+	public void AddField(Field f, int x, int y) {
+		fields[x][y] = f;
+		if(x >= 1 && fields[x-1][y] != null)
+		{
+			f.SetNeighbor(Direction.Left,fields[x-1][y]);
+			fields[x-1][y].SetNeighbor(Direction.Right,f);
+		}
+		if(x < fields.length-1 && fields[x+1][y] != null)
+		{
+			f.SetNeighbor(Direction.Right,fields[x+1][y]);
+			fields[x+1][y].SetNeighbor(Direction.Left,f);
+		}
+		if(y < fields[0].length-1 && fields[x][y+1] != null)
+		{
+			f.SetNeighbor(Direction.Down,fields[x][y+1]);
+			fields[x][y+1].SetNeighbor(Direction.Up,f);
+		}
+		if(y >= 1 && fields[x][y-1] != null)
+		{
+			f.SetNeighbor(Direction.Up,fields[x][y-1]);
+			fields[x][y-1].SetNeighbor(Direction.Down,f);
+		}
+		f.setcoordinates(x, y);
+	}
 	
 	/* Munkásszám beállítása */
 	public void SetWorkerNumber(int n) {
@@ -22,8 +54,8 @@ public class Warehouse extends DebuggedClass {
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	
-	/* Mezõk listájának beállítása */
-	public void SetFields(ArrayList<Field> f) {
+	/* Mezõk mártixának beállítása */
+	public void SetFields(Field[][] f) {
 		FunctionLogger.logFunctionCalled(toString(), "SetFields(ArrayList<Field> f)");
 		fields = f;
 		FunctionLogger.logFunctionReturnVoid();
@@ -48,8 +80,8 @@ public class Warehouse extends DebuggedClass {
 		return FunctionLogger.logFunctionReturn( boxes );
 	}
 	
-	/* Mezõlista lekérdezése */
-	public ArrayList<Field> GetFields(){
+	/* Mezõmátrix lekérdezése */
+	public Field[][] GetFields(){
 		FunctionLogger.logFunctionCalled(toString(), "GetFields()");
 		return FunctionLogger.logFunctionReturn( fields );
 	}
