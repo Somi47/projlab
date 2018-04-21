@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import Utility.DebuggedClass;
 import Utility.FunctionLogger;
 
-/* Rakt·r
- * T·rolja a j·tÈkosok sz·m·t, p·ly·t alkotÛ mezıket, 
- * Ès a p·ly·n lÈvı dobozokat. 
+/* Rakt√°r
+ * T√°rolja a j√°t√©kosok sz√°m√°t, p√°ly√°t alkot√≥ mez≈ëket, 
+ * √©s a p√°ly√°n l√©v≈ë dobozokat. 
  */
 public class Warehouse extends DebuggedClass {
 
@@ -15,93 +15,111 @@ public class Warehouse extends DebuggedClass {
 	private Field[][] fields;
 	private ArrayList<Box> boxes = new ArrayList<Box>();
 	
+	
 	/* Harom parameteres konstruktor */
 	public Warehouse(int x, int y, int wn){
 		fields = new Field[x][y];
 		SetWorkerNumber(wn);
 	}
 	
-	/* Mezı felvÈtele a rakt·rba */
+	/* Mez√µ felv√©tele a rakt√°rba */
 	public void AddField(Field f, int x, int y) {
 		fields[x][y] = f;
+		
+		if(x == 0)
+			f.SetNeighbor(Direction.Left,null);
+		
+		if(x == fields.length-1)
+			f.SetNeighbor(Direction.Right,null);
+		
+		if(y == 0)
+			f.SetNeighbor(Direction.Up,null);
+		
+		if(x == fields[0].length-1)
+			f.SetNeighbor(Direction.Down,null);
+		
 		if(x >= 1 && fields[x-1][y] != null)
 		{
 			f.SetNeighbor(Direction.Left,fields[x-1][y]);
 			fields[x-1][y].SetNeighbor(Direction.Right,f);
 		}
+		
 		if(x < fields.length-1 && fields[x+1][y] != null)
 		{
 			f.SetNeighbor(Direction.Right,fields[x+1][y]);
 			fields[x+1][y].SetNeighbor(Direction.Left,f);
 		}
+		
 		if(y < fields[0].length-1 && fields[x][y+1] != null)
 		{
 			f.SetNeighbor(Direction.Down,fields[x][y+1]);
 			fields[x][y+1].SetNeighbor(Direction.Up,f);
 		}
+		
 		if(y >= 1 && fields[x][y-1] != null)
 		{
 			f.SetNeighbor(Direction.Up,fields[x][y-1]);
 			fields[x][y-1].SetNeighbor(Direction.Down,f);
 		}
+		
 		f.setcoordinates(x, y);
 	}
 	
-	/* Munk·ssz·m be·llÌt·sa */
+	/* Munk√°ssz√°m be√°ll√≠t√°sa */
 	public void SetWorkerNumber(int n) {
 		FunctionLogger.logFunctionCalled(toString(), "SetWorkerNumber(int n)");
 		workerNumber = n;
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	
-	/* Mezık m·rtix·nak be·llÌt·sa */
+	/* Mez≈ëk m√°rtix√°nak be√°ll√≠t√°sa */
 	public void SetFields(Field[][] f) {
 		FunctionLogger.logFunctionCalled(toString(), "SetFields(ArrayList<Field> f)");
 		fields = f;
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	
-	/* Dobozok list·j·nak be·llÌt·sa */
+	/* Dobozok list√°j√°nak be√°ll√≠t√°sa */
 	public void SetBoxes(ArrayList<Box> b) {
 		FunctionLogger.logFunctionCalled(toString(), "SetBoxes(ArrayList<Box> b)");
 		boxes = b;
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	
-	/* Munk·sok sz·m·nak lekÈrdezÈse */
+	/* Munk√°sok sz√°m√°nak lek√©rdez√©se */
 	public int GetWorkerNumber() {
 		FunctionLogger.logFunctionCalled(toString(), "GetWorkerNumber()");
 		return FunctionLogger.logFunctionReturn( workerNumber );
 	}
 	
-	/* Dobozlista lekÈrdezÈse */
+	/* Dobozlista lek√©rdez√©se */
 	public ArrayList<Box> GetBoxes(){
 		FunctionLogger.logFunctionCalled(toString(), "GetBoxes()");
 		return FunctionLogger.logFunctionReturn( boxes );
 	}
 	
-	/* Mezım·trix lekÈrdezÈse */
+	/* Mez≈ëm√°trix lek√©rdez√©se */
 	public Field[][] GetFields(){
 		FunctionLogger.logFunctionCalled(toString(), "GetFields()");
 		return FunctionLogger.logFunctionReturn( fields );
 	}
 	
-	/* Adott doboz a dobozlist·bÛl tˆrlÈse */
+	/* Adott doboz a dobozlist√°b√≥l t√∂rl√©se */
 	public void RemoveBox(Box b) {
 		FunctionLogger.logFunctionCalled(toString(), "RemoveBox(Box b)");
 		boxes.remove(b);
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	
-	/* Rakt·r inici·liz·l·sa */
+	/* Rakt√°r inici√°liz√°l√°sa */
 	public void Initialize() {
 		FunctionLogger.logFunctionCalled(toString(), "Initialize()");
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	
-	/* J·tÈk vÈgÈnek ellenırzÈse. 
-	 * Ha elfogytak a munk·sok vagy a dobozok, vagy
-	 * minden doboz beragadt akkor vÈge a j·tÈknak. 
+	/* J√°t√©k v√©g√©nek ellen≈ërz√©se. 
+	 * Ha elfogytak a munk√°sok vagy a dobozok, vagy
+	 * minden doboz beragadt akkor v√©ge a j√°t√©knak. 
 	 */
 	public void CheckEndGame() {
 		FunctionLogger.logFunctionCalled(toString(), "CheckEndGame()");
@@ -121,7 +139,7 @@ public class Warehouse extends DebuggedClass {
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	
-	/* J·tÈk vÈge */
+	/* J√°t√©k v√©ge */
 	public void EndGame() {
 		FunctionLogger.logFunctionCalled(toString(), "EndGame()");
 		FunctionLogger.logFunctionReturnVoid();

@@ -31,6 +31,7 @@ public class Box extends Thing implements Moveable{
 		if(canMove) {
 			GetField().Remove();
 			GetField().GetNeighbor(dir).Add(this);
+			SetField(GetField().GetNeighbor(dir));
 			return FunctionLogger.logFunctionReturn(true);
 		}
 		return FunctionLogger.logFunctionReturn(false);
@@ -96,7 +97,7 @@ public class Box extends Thing implements Moveable{
 				}
 			}
 			
-			if(stuckedUp || stuckedDown)
+			if(stuckedUp || stuckedDown || upNeighbor ==null || downNeighbor == null )
 				SetStucked(true);
 		}
 		else // if(dir == Direction.Up || dir == Direction.Down)
@@ -122,7 +123,7 @@ public class Box extends Thing implements Moveable{
 			}
 			
 			
-			if(stuckedLeft || stuckedRight)
+			if(stuckedLeft || stuckedRight || rightNeighbor == null || leftNeighbor == null )
 				SetStucked(true);
 		}
 		FunctionLogger.logFunctionReturnVoid();

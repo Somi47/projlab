@@ -46,6 +46,7 @@ public class Switch extends Field {
 	 */
 	public boolean HitBy(Direction dir, Box b, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
+		b.CheckStucked(dir);
 		if(GetThing() != null)
 			if(GetThing().HitBy(dir, b, force)) {
 					pit.SetOpen(true);

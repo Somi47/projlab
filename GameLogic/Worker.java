@@ -55,8 +55,8 @@ public class Worker extends Thing implements Moveable {
 	 */
 	public void Die() {
 		FunctionLogger.logFunctionCalled(toString(), "Die()");
-		GetField().Remove();
 		GetField().GetWarehouse().SetWorkerNumber(GetField().GetWarehouse().GetWorkerNumber()-1);
+		GetField().Remove();
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	
@@ -76,6 +76,7 @@ public class Worker extends Thing implements Moveable {
 		if(canMove) {
 			GetField().Remove();
 			GetField().GetNeighbor(dir).Add(this);
+			SetField(GetField().GetNeighbor(dir));
 			return FunctionLogger.logFunctionReturn( true );
 		}
 		return FunctionLogger.logFunctionReturn( false );

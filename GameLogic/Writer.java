@@ -63,7 +63,8 @@ public class Writer {
 	public void ListWorkers()
 	{
 		for(Worker w : workers)
-			writer.println("(Worker) " + w.GetName() + " " + w.GetField().GetX() + " " + w.GetField().GetY() + " " + w.GetPoints());
+			if(w.GetField().GetThing() == w)
+				writer.println("(Worker) " + w.GetName() + " " + w.GetField().GetX() + " " + w.GetField().GetY() + " " + w.GetPoints());
 		writer.println("--------");
 	}
 	

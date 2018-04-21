@@ -571,73 +571,81 @@ public class Program
 		
 		/*
 		//Writer osztály példa
-		Warehouse wh = new Warehouse(3,3,2);
-		Writer out = new Writer("txt.txt");
+				Warehouse wh = new Warehouse(3,3,2);
+				Writer out = new Writer("txt.txt");
+				
+				Field f;
+				for(int i = 0; i < 3 ; i++)
+					for(int j = 0; j < 3 ; j++)
+					{
+						if(i == 1 && j == 1)
+						{
+							f = new Grinder();
+							f.setcoordinates(i, j);
+							f.SetWarehouse(wh);
+							wh.AddField(f, i, j);
+							out.AddField(f,"Grinder");
+						}
+						else
+						{
+							f = new Floor();
+							f.setcoordinates(i, j);
+							wh.AddField(f, i, j);
+							f.SetWarehouse(wh);
+							out.AddField(f,"Floor");
+						}
+					}
+				
+				Worker w1 = new Worker();
+				wh.GetFields()[0][0].Add(w1);
+				w1.SetField(wh.GetFields()[0][0]);
+				w1.SetName("Gyula");
+				w1.AddPoint();
+				
+				Worker w2 = new Worker();
+				wh.GetFields()[2][0].Add(w2);
+				w2.SetField(wh.GetFields()[2][0]);
+				w2.SetName("Kata");
+				w2.AddPoint();
+				w2.AddPoint();
+				w2.AddPoint();
+				
+				out.AddWorker(w1);
+				out.AddWorker(w2);
+				
+				Box b1 = new Box();
+				wh.GetFields()[2][2].Add(b1);
+				b1.SetField(wh.GetFields()[2][2]);
+				
+				Box b2 = new Box();
+				wh.GetFields()[1][0].Add(b2);
+				b2.SetField(wh.GetFields()[1][0]);
+				
+				
+				out.AddBox(b1);
+				out.AddBox(b2);
+				
+				Wall w = new Wall();
+				wh.GetFields()[0][2].Add(w);
+				w.SetField(wh.GetFields()[0][2]);
+				out.AddWall(w);
+				
+				
+				out.ListWorkers();
+				out.ListFields();
+				out.ListBoxes();
+				out.ListWalls();
+				
+				w1.Move(Direction.Right, w1.getForce());
+				
+				out.ListWorkers();
+				out.ListFields();
+				out.ListBoxes();
+				out.ListWalls();
+			
+				
+				out.Close();
+				*/
 		
-		Field f;
-		for(int i = 0; i < 3 ; i++)
-			for(int j = 0; j < 3 ; j++)
-			{
-				if(i == 1 && j == 1)
-				{
-					f = new Grinder();
-					f.setFriction(6000);;
-					f.setcoordinates(i, j);
-					wh.AddField(f, i, j);
-					out.AddField(f,"Grinder");
-				}
-				else
-				{
-					f = new Floor();
-					f.setcoordinates(i, j);
-					wh.AddField(f, i, j);
-					out.AddField(f,"Floor");
-				}
-			}
-		
-		Worker w1 = new Worker();
-		wh.GetFields()[0][0].Add(w1);
-		w1.SetField(wh.GetFields()[0][0]);
-		w1.SetName("Gyula");
-		w1.AddPoint();
-		
-		Worker w2 = new Worker();
-		wh.GetFields()[0][2].Add(w2);
-		w2.SetField(wh.GetFields()[0][2]);
-		w2.SetName("Kata");
-		w2.AddPoint();
-		w2.AddPoint();
-		w2.AddPoint();
-		
-		out.AddWorker(w1);
-		out.AddWorker(w2);
-		
-		Box b1 = new Box();
-		wh.GetFields()[2][2].Add(b1);
-		b1.SetField(wh.GetFields()[2][2]);
-		
-		Box b2 = new Box();
-		wh.GetFields()[0][1].Add(b2);
-		b2.SetField(wh.GetFields()[0][1]);
-		
-		b1.CheckStucked(Direction.Left);
-		
-		out.AddBox(b1);
-		out.AddBox(b2);
-		
-		Wall w = new Wall();
-		wh.GetFields()[0][2].Add(w);
-		w.SetField(wh.GetFields()[0][2]);
-		out.AddWall(w);
-		
-		b2.CheckStucked(Direction.Right);
-		
-		out.ListWorkers();
-		out.ListFields();
-		out.ListBoxes();
-		out.ListWalls();
-		
-		out.Close();
-		*/
 	}	
 }
