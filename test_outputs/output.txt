@@ -1,0 +1,15 @@
+(Field) floor 0 0 2
+(Field) floor 3 0 2
+(Field) floor 2 0 2
+(Field) floor 1 0 2
+--------
+(Worker) Tamás 0 0 0
+--------
+(Box) 1 0 true
+(Box) 2 0 true
+--------
+(Worker) Tamás 1 0 0
+--------
+(Box) 2 0 false
+(Box) 3 0 false
+--------
