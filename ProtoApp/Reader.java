@@ -190,7 +190,7 @@ public class Reader {
 		
 		int x = Integer.parseInt(tokens[2]);
 		int y = Integer.parseInt(tokens[3]);
-		Field field = wh.GetFields()[x][y];
+		Field field = wh.GetFields()[x-1][y-1];
 		if(field == null)
 		{
 			System.out.println("No Field found while processing command: \"" + tokens[0] + "\" Skipped!");
@@ -263,13 +263,13 @@ public class Reader {
 		for(Worker w : w.GetData().GetWorkers())
 			if(w.GetName().equals(tokens[1]))
 			{
-				if(tokens[2].equals("up"))
+				if(dir.equals("up"))
 					w.Move(Direction.Up, w.getForce());
-				if(tokens[2].equals("down"))
+				if(dir.equals("down"))
 					w.Move(Direction.Down, w.getForce());
-				if(tokens[2].equals("right"))
+				if(dir.equals("right"))
 					w.Move(Direction.Right, w.getForce());
-				if(tokens[2].equals("left"))
+				if(dir.equals("left"))
 					w.Move(Direction.Left, w.getForce());
 				return;
 			}

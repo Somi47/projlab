@@ -42,6 +42,21 @@ public class Box extends Thing implements Moveable{
 	 * Ha be van ragadva hamissal, ha nincs, elmozgatja a dobozt az adott irányba,
 	 * ha mozoghat arra igazzal tér vissza. 
 	 */
+	
+	/* Doboz mezőjének beállítása */
+	@Override
+	public void SetField(Field f) {
+		FunctionLogger.logFunctionCalled(toString(), "SetField(Field f)");
+		super.SetField(f);
+		for(int i = 0 ; i < 3 ; i++)
+		{
+			if(f.GetNeighbor(Direction.values()[i]) != null && f.GetNeighbor(Direction.values()[i]).GetThing() !=null &&  f.GetNeighbor(Direction.values()[i]).GetThing().isStucked() &&
+					f.GetNeighbor(Direction.values()[(i+1)>3?0:(i+1)]) != null && f.GetNeighbor(Direction.values()[(i+1)>3?0:(i+1)]).GetThing() != null && f.GetNeighbor(Direction.values()[(i+1)>3?0:(i+1)]).GetThing().isStucked())
+				SetStucked(true);
+		}
+		FunctionLogger.logFunctionReturnVoid();
+	}
+	
 	@Override
 	public boolean HitBy(Direction dir, Box b, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");

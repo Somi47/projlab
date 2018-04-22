@@ -24,6 +24,9 @@ public class Warehouse extends DebuggedClass {
 	
 	/* Mezõ felvétele a raktárba */
 	public void AddField(Field f, int x, int y) {
+		x--;
+		y--;
+		
 		fields[x][y] = f;
 		
 		if(x == 0)

@@ -1,0 +1,13 @@
+loadWarehouse(3, 1, 1)
+placeField(floor, 1, 1, 2)
+placeField(floor, 2, 1, 2)
+placeField(floor, 3, 1, 2)
+placeThing(worker, 1, 1)
+placeThing(box, 2, 1)
+setWorker(Fred, zöld, 4, 0)
+listFields
+listWorkers
+listBoxes
+Step(Fred,right)
+listWorkers
+listBoxes

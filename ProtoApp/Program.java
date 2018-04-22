@@ -30,7 +30,7 @@ public class Program {
 		for(int i = 1; i <= testcount; ++i)
 		{
 			ProtoData data = new ProtoData();
-			Writer w = new Writer(data,"test_outputs\\" + args[1] + ".txt");
+			Writer w = new Writer(data,"test_outputs\\" + (args.length>1?args[1]:args[0].concat("_out"))  + ".txt");
 			Reader r = new Reader(w,"test_inputs\\" +  args[0] + ".txt");
 			r.ReadFile();
 			w.Close();
