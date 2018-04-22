@@ -37,6 +37,7 @@ public class Reader {
 		        line = br.readLine();
 		    }
 		    
+		    System.out.println(filename + " Processing finished!");
 		    br.close();
 		}
 		catch(IOException e) {
@@ -126,8 +127,15 @@ public class Reader {
 			int y        = Integer.parseInt(tokens[3]);
 			int friction = Integer.parseInt(tokens[4]);
 			
+			if(x < 1 || x > wh.GetFields().length || y < 1 || y > wh.GetFields()[x - 1].length)
+			{
+				System.out.println("Wrong coordinates while processing command: \"" + tokens[0] + "\" Skipped!");
+				return;
+			}
+			
 			created.setFriction(friction);
-			wh.AddField(created, x, y);
+			wh.AddField(created, x - 1, y - 1);
+			created.SetWarehouse(wh);
 			w.GetData().AddField(created, "floor");
 		}
 		else if(type.equalsIgnoreCase("switch") && tokens.length == 5)
@@ -138,8 +146,15 @@ public class Reader {
 			int y        = Integer.parseInt(tokens[3]);
 			int friction = Integer.parseInt(tokens[4]);
 			
+			if(x < 1 || x > wh.GetFields().length || y < 1 || y > wh.GetFields()[x - 1].length)
+			{
+				System.out.println("Wrong coordinates while processing command: \"" + tokens[0] + "\" Skipped!");
+				return;
+			}
+			
 			created.setFriction(friction);
-			wh.AddField(created, x, y);
+			wh.AddField(created, x - 1, y - 1);
+			created.SetWarehouse(wh);
 			w.GetData().AddField(created, "switch");
 		}
 		else if(type.equalsIgnoreCase("pit") && tokens.length == 5)
@@ -150,10 +165,17 @@ public class Reader {
 			int y        = Integer.parseInt(tokens[3]);
 			int open_int = Integer.parseInt(tokens[4]);
 			
+			if(x < 1 || x > wh.GetFields().length || y < 1 || y > wh.GetFields()[x - 1].length)
+			{
+				System.out.println("Wrong coordinates while processing command: \"" + tokens[0] + "\" Skipped!");
+				return;
+			}
+			
 			boolean open_bool = open_int == 1 ? true : false;
 			
 			created.SetOpen(open_bool);
-			wh.AddField(created, x, y);
+			wh.AddField(created, x - 1, y - 1);
+			created.SetWarehouse(wh);
 			w.GetData().AddField(created, "pit");
 		}
 		else if(type.equalsIgnoreCase("grinder") && tokens.length == 4)
@@ -163,7 +185,14 @@ public class Reader {
 			int x = Integer.parseInt(tokens[2]);
 			int y = Integer.parseInt(tokens[3]);
 			
-			wh.AddField(created, x, y);
+			if(x < 1 || x > wh.GetFields().length || y < 1 || y > wh.GetFields()[x - 1].length)
+			{
+				System.out.println("Wrong coordinates while processing command: \"" + tokens[0] + "\" Skipped!");
+				return;
+			}
+			
+			wh.AddField(created, x - 1, y - 1);
+			created.SetWarehouse(wh);
 			w.GetData().AddField(created, "grinder");
 		}
 		else
@@ -190,7 +219,13 @@ public class Reader {
 		
 		int x = Integer.parseInt(tokens[2]);
 		int y = Integer.parseInt(tokens[3]);
-		Field field = wh.GetFields()[x-1][y-1];
+		if(x < 1 || x > wh.GetFields().length || y < 1 || y > wh.GetFields()[x - 1].length)
+		{
+			System.out.println("Wrong coordinates while processing command: \"" + tokens[0] + "\" Skipped!");
+			return;
+		}
+		
+		Field field = wh.GetFields()[x - 1][y - 1];
 		if(field == null)
 		{
 			System.out.println("No Field found while processing command: \"" + tokens[0] + "\" Skipped!");
@@ -210,7 +245,7 @@ public class Reader {
 			Box created = new Box();
 			field.Add(created);
 			created.SetField(field);
-			w.GetData().AddBox(created);
+			field.GetWarehouse().GetBoxes().add(created);
 		}
 		else if(type.equalsIgnoreCase("wall"))
 		{

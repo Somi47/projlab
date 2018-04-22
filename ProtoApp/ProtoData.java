@@ -14,7 +14,6 @@ public class ProtoData {
 	private Warehouse wh;
 	private HashMap<Field,String> fields = new HashMap<>();
 	private ArrayList<Worker> workers = new ArrayList<>();
-	private ArrayList<Box> boxes = new ArrayList<>();
 	private ArrayList<Wall> walls = new ArrayList<>();
 	
 
@@ -32,11 +31,6 @@ public class ProtoData {
 	{
 		if(workers.size() < 2)
 		workers.add(w);
-	}
-	
-	public void AddBox(Box b)
-	{
-		boxes.add(b);
 	}
 	
 	public void AddWall(Wall w)
@@ -58,12 +52,7 @@ public class ProtoData {
 	{
 		return workers;
 	}
-	
-	public ArrayList<Box> GetBoxes()
-	{
-		return boxes;
-	}
-	
+
 	public ArrayList<Wall> GetWalls()
 	{
 		return walls;

@@ -38,7 +38,7 @@ public class Writer {
 	public void ListFields()
 	{
 		for(Field f : data.GetFields().keySet())
-			writer.println("(Field) " + data.GetFields().get(f) + " " + f.GetX() + " " + f.GetY() + " " + f.getFriction());
+			writer.println("(Field) " + data.GetFields().get(f) + " " + (f.GetX() + 1) + " " + (f.GetY() + 1) + " " + f.getFriction());
 		writer.println("--------");
 	}
 	
@@ -46,21 +46,21 @@ public class Writer {
 	{
 		for(Worker w : data.GetWorkers())
 			if(w.GetField().GetThing() == w)
-				writer.println("(Worker) " + w.GetName() + " " + w.GetField().GetX() + " " + w.GetField().GetY() + " " + w.GetPoints());
+				writer.println("(Worker) " + w.GetName() + " " + (w.GetField().GetX() + 1) + " " + (w.GetField().GetY() + 1) + " " + w.GetPoints());
 		writer.println("--------");
 	}
 	
 	public void ListBoxes()
 	{
-		for(Box b : data.GetBoxes())
-			writer.println("(Box) " + b.GetField().GetX() + " " + b.GetField().GetY() + " " + !b.isStucked());
+		for(Box b : data.GetWarehouse().GetBoxes())
+			writer.println("(Box) " + (b.GetField().GetX() + 1) + " " + (b.GetField().GetY() + 1) + " " + !b.isStucked());
 		writer.println("--------");
 	}
 	
 	public void ListWalls()
 	{
 		for(Wall w : data.GetWalls())
-			writer.println("(Wall) " + w.GetField().GetX() + " " + w.GetField().GetY());
+			writer.println("(Wall) " + (w.GetField().GetX() + 1) + " " + (w.GetField().GetY() + 1));
 		writer.println("--------");
 	}
 	

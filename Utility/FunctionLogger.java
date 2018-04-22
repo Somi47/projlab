@@ -5,21 +5,37 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class FunctionLogger {
+	private static boolean createLog = true;	
 	private static int tabCount = 0;
+	
+	
+	public static void createLog(boolean cl)
+	{
+		createLog = cl;
+	}
 	
 	// Prints the function call in a formatted way.
 	public static void logFunctionCalled(String calledName, String calledFunction) {
+		if(!createLog)
+			return;			
+		
 		printTabs();
 		System.out.println(calledName+"."+calledFunction);
 		++tabCount;
 	}
 	
 	public static void logFunctionReturnVoid() {
+		if(!createLog)
+			return;
+		
 		--tabCount;
 	}
 	
 	// Prints the function return in a formatted way. Returns with the parameter for easier use.
 	public static <T> T logFunctionReturn(T valueReturned) {
+		if(!createLog)
+			return valueReturned;
+		
 		--tabCount;
 		printTabs();
 		if(valueReturned != null)
@@ -53,7 +69,7 @@ public class FunctionLogger {
 	}
 	
 	// Prints the tabs according to the calling depth.
-	private static void printTabs() {
+	private static void printTabs() {					
 		for(int i=0; i<tabCount; ++i)
 			System.out.print('\t');
 	}

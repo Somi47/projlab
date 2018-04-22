@@ -41,12 +41,12 @@ public abstract class Field extends DebuggedClass {
 	
 	/* x koordináta lekérdezése */
 	public int GetX() {
-		return x+1;
+		return x;
 	}
 	
 	/* y koordináta lekérdezése */
 	public int GetY() {
-		return y+1;
+		return y;
 	}
 	
 	/* Dolog mezõre helyezése. */
