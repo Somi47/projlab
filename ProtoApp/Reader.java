@@ -138,19 +138,25 @@ public class Reader {
 			created.SetWarehouse(wh);
 			w.GetData().AddField(created, "floor");
 		}
-		else if(type.equalsIgnoreCase("switch") && tokens.length == 5)
+		else if(type.equalsIgnoreCase("switch") && tokens.length == 7)
 		{
 			Switch created = new Switch();
 			
 			int x        = Integer.parseInt(tokens[2]);
 			int y        = Integer.parseInt(tokens[3]);
-			int friction = Integer.parseInt(tokens[4]);
+			int pit_x        = Integer.parseInt(tokens[4]);
+			int pit_y        = Integer.parseInt(tokens[5]);
+			int friction = Integer.parseInt(tokens[6]);
 			
-			if(x < 1 || x > wh.GetFields().length || y < 1 || y > wh.GetFields()[x - 1].length)
+			if((x < 1 || x > wh.GetFields().length || y < 1 || y > wh.GetFields()[x - 1].length) 
+					|| (pit_x < 1 || pit_x > wh.GetFields().length || pit_y < 1 || pit_y > wh.GetFields()[x - 1].length))
 			{
 				System.out.println("Wrong coordinates while processing command: \"" + tokens[0] + "\" Skipped!");
 				return;
 			}
+			
+			if(wh.GetFields()[pit_x - 1][pit_y -1] != null)
+				created.SetPit((Pit)wh.GetFields()[pit_x - 1][pit_y -1]);
 			
 			created.setFriction(friction);
 			wh.AddField(created, x - 1, y - 1);
