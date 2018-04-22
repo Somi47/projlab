@@ -67,6 +67,13 @@ public class Worker extends Thing implements Moveable {
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	
+	/* Munkás pontjainak beállítása. */
+	public void SetPoints(int p) {
+		FunctionLogger.logFunctionCalled(toString(), "SetPoint()");
+		points = p;
+		FunctionLogger.logFunctionReturnVoid();
+	}
+	
 	/* Munkás adott irányba mozgatása.
 	 * Ha mozoghat az adott irányba, akkor mezõváltás.
 	 */

@@ -1,23 +1,21 @@
-package GameLogic;
+package ProtoApp;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import GameLogic.Box;
+import GameLogic.Field;
+import GameLogic.Wall;
+import GameLogic.Worker;
 
 
 public class Writer {
-	
-	private HashMap<Field,String> fields = new HashMap<>();
-	private ArrayList<Worker> workers = new ArrayList<>();
-	private ArrayList<Box> boxes = new ArrayList<>();
-	private ArrayList<Wall> walls = new ArrayList<>();
-	
+	private ProtoData data;	
 	private PrintWriter writer;
 	
-	public Writer(String outputfile)
+	public Writer(ProtoData _data, String outputfile)
 	{
+		data = _data;
 		try 
 		{
 			writer = new PrintWriter(outputfile, "UTF-8");
@@ -32,37 +30,21 @@ public class Writer {
 		}
 	}
 	
-	public void AddField(Field f,String fieldtype)
+	public ProtoData GetData()
 	{
-		fields.put(f, fieldtype);
-	}
-	
-	public void AddWorker(Worker w)
-	{
-		if(workers.size() < 2)
-		workers.add(w);
-	}
-	
-	public void AddBox(Box b)
-	{
-		boxes.add(b);
-	}
-	
-	public void AddWall(Wall w)
-	{
-		walls.add(w);
+		return data;
 	}
 	
 	public void ListFields()
 	{
-		for(Field f : fields.keySet())
-			writer.println("(Field) " + fields.get(f) + " " + f.GetX() + " " + f.GetY() + " " + f.getFriction());
+		for(Field f : data.GetFields().keySet())
+			writer.println("(Field) " + data.GetFields().get(f) + " " + f.GetX() + " " + f.GetY() + " " + f.getFriction());
 		writer.println("--------");
 	}
 	
 	public void ListWorkers()
 	{
-		for(Worker w : workers)
+		for(Worker w : data.GetWorkers())
 			if(w.GetField().GetThing() == w)
 				writer.println("(Worker) " + w.GetName() + " " + w.GetField().GetX() + " " + w.GetField().GetY() + " " + w.GetPoints());
 		writer.println("--------");
@@ -70,14 +52,14 @@ public class Writer {
 	
 	public void ListBoxes()
 	{
-		for(Box b : boxes)
+		for(Box b : data.GetBoxes())
 			writer.println("(Box) " + b.GetField().GetX() + " " + b.GetField().GetY() + " " + !b.isStucked());
 		writer.println("--------");
 	}
 	
 	public void ListWalls()
 	{
-		for(Wall w : walls)
+		for(Wall w : data.GetWalls())
 			writer.println("(Wall) " + w.GetField().GetX() + " " + w.GetField().GetY());
 		writer.println("--------");
 	}
