@@ -32,6 +32,7 @@ public class Box extends Thing implements Moveable{
 			GetField().Remove();
 			GetField().GetNeighbor(dir).Add(this);
 			SetField(GetField().GetNeighbor(dir));
+			CheckStucked(dir);
 			return FunctionLogger.logFunctionReturn(true);
 		}
 		return FunctionLogger.logFunctionReturn(false);
@@ -48,10 +49,11 @@ public class Box extends Thing implements Moveable{
 	public void SetField(Field f) {
 		FunctionLogger.logFunctionCalled(toString(), "SetField(Field f)");
 		super.SetField(f);
-		for(int i = 0 ; i < 3 ; i++)
+		
+		for(int i = 0 ; i < 4 ; i++)
 		{
-			if(f.GetNeighbor(Direction.values()[i]) != null && f.GetNeighbor(Direction.values()[i]).GetThing() !=null &&  f.GetNeighbor(Direction.values()[i]).GetThing().isStucked() &&
-					f.GetNeighbor(Direction.values()[(i+1)>3?0:(i+1)]) != null && f.GetNeighbor(Direction.values()[(i+1)>3?0:(i+1)]).GetThing() != null && f.GetNeighbor(Direction.values()[(i+1)>3?0:(i+1)]).GetThing().isStucked())
+			if(((f.GetNeighbor(Direction.values()[i]) != null && f.GetNeighbor(Direction.values()[i]).GetThing() !=null && f.GetNeighbor(Direction.values()[i]).GetThing().isStucked()) || (f.GetNeighbor(Direction.values()[i]) == null)) &&
+					((f.GetNeighbor(Direction.values()[(i+1)>3?0:(i+1)]) != null && f.GetNeighbor(Direction.values()[(i+1)>3?0:(i+1)]).GetThing() != null && f.GetNeighbor(Direction.values()[(i+1)>3?0:(i+1)]).GetThing().isStucked()) || (f.GetNeighbor(Direction.values()[(i+1)>3?0:(i+1)]) == null)))
 				SetStucked(true);
 		}
 		FunctionLogger.logFunctionReturnVoid();
@@ -95,7 +97,7 @@ public class Box extends Thing implements Moveable{
 			boolean stuckedUp  =  true;
 			Field upNeighbor = null;
 			if(GetField().GetNeighbor(Direction.Up)!= null)
-				upNeighbor = GetField().GetNeighbor(Direction.Up).GetNeighbor(Direction.Up);
+				upNeighbor = GetField().GetNeighbor(Direction.Up);
 
 			if(upNeighbor != null)
 			{
@@ -108,7 +110,7 @@ public class Box extends Thing implements Moveable{
 			boolean stuckedDown  =  true;
 			Field downNeighbor = null;
 			if(GetField().GetNeighbor(Direction.Down)!= null)
-				downNeighbor = GetField().GetNeighbor(Direction.Down).GetNeighbor(Direction.Down);
+				downNeighbor = GetField().GetNeighbor(Direction.Down);
 			if(downNeighbor != null)
 			{
 				if(downNeighbor.GetThing() != null)
@@ -125,7 +127,7 @@ public class Box extends Thing implements Moveable{
 			boolean stuckedLeft  =  true;
 			Field leftNeighbor = null;
 			if(GetField().GetNeighbor(Direction.Left)!= null)
-				leftNeighbor = GetField().GetNeighbor(Direction.Left).GetNeighbor(Direction.Left);
+				leftNeighbor = GetField().GetNeighbor(Direction.Left);
 			if(leftNeighbor != null)
 			{
 				if(leftNeighbor.GetThing() != null)
@@ -137,7 +139,7 @@ public class Box extends Thing implements Moveable{
 			boolean stuckedRight  =  true;
 			Field rightNeighbor = null;
 				if(GetField().GetNeighbor(Direction.Right)!= null)
-					rightNeighbor = GetField().GetNeighbor(Direction.Right).GetNeighbor(Direction.Right);
+					rightNeighbor = GetField().GetNeighbor(Direction.Right);
 			if(rightNeighbor != null)
 			{
 				if(rightNeighbor.GetThing() != null)
@@ -146,9 +148,13 @@ public class Box extends Thing implements Moveable{
 				}
 			}
 			
-			
 			if(stuckedLeft || stuckedRight || rightNeighbor == null || leftNeighbor == null )
 				SetStucked(true);
+			
+			if(isStucked())
+				for(int i = 0 ; i < 4 ; i++)
+					if(i%4 != (dir.ordinal()-2)%4 && GetField().GetNeighbor(Direction.values()[i]) != null && GetField().GetNeighbor(Direction.values()[i]).GetThing() != null)
+						GetField().GetNeighbor(Direction.values()[i]).GetThing().SetStucked(true);
 		}
 		FunctionLogger.logFunctionReturnVoid();
 	}
