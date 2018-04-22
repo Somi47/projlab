@@ -252,6 +252,7 @@ public class Reader {
 		/**/ if(type.equalsIgnoreCase("worker"))
 		{
 			Worker created = new Worker();
+			wh.GetWorkers().add(created);
 			field.Add(created);
 			created.SetField(field);
 			w.GetData().AddWorker(created);

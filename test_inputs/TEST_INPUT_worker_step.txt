@@ -1,0 +1,9 @@
+loadWarehouse(2, 1, 1)
+placeField(floor, 1, 1, 2)
+placeField(floor, 2, 1, 2)
+placeThing(worker, 1, 1)
+setWorker(Alfred, zöld, 7, 0)
+listFields
+listWorkers
+Step(Alfred,right)
+listWorkers

@@ -45,7 +45,7 @@ public class Writer {
 	public void ListWorkers()
 	{
 		for(Worker w : data.GetWorkers())
-			if(w.GetField().GetThing() == w)
+			if(w.GetField().GetThing() == w && w.GetField().GetWarehouse().GetWorkers().contains(w))
 				writer.println("(Worker) " + w.GetName() + " " + (w.GetField().GetX() + 1) + " " + (w.GetField().GetY() + 1) + " " + w.GetPoints());
 		writer.println("--------");
 	}

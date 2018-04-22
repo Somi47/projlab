@@ -1,0 +1,7 @@
+(Field) floor 1 1 2
+(Field) floor 2 1 2
+--------
+(Worker) Alfred 1 1 0
+--------
+(Worker) Alfred 2 1 0
+--------

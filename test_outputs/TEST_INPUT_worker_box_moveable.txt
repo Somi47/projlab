@@ -1,0 +1,12 @@
+(Field) floor 2 1 2
+(Field) floor 1 1 2
+(Field) floor 3 1 2
+--------
+(Worker) Fred 1 1 0
+--------
+(Box) 2 1 true
+--------
+(Worker) Fred 2 1 0
+--------
+(Box) 3 1 false
+--------

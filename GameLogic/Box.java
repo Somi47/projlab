@@ -93,7 +93,7 @@ public class Box extends Thing implements Moveable{
 	public void CheckStucked(Direction dir) {
 		FunctionLogger.logFunctionCalled(toString(), "CheckStucked(Direction dir)");
 		if(dir == Direction.Left || dir == Direction.Right)
-		{			
+		{
 			boolean stuckedUp  =  true;
 			Field upNeighbor = null;
 			if(GetField().GetNeighbor(Direction.Up)!= null)
@@ -122,7 +122,7 @@ public class Box extends Thing implements Moveable{
 			if(stuckedUp || stuckedDown || upNeighbor ==null || downNeighbor == null )
 				SetStucked(true);
 		}
-		else // if(dir == Direction.Up || dir == Direction.Down)
+		else
 		{
 			boolean stuckedLeft  =  true;
 			Field leftNeighbor = null;
@@ -148,14 +148,17 @@ public class Box extends Thing implements Moveable{
 				}
 			}
 			
-			if(stuckedLeft || stuckedRight || rightNeighbor == null || leftNeighbor == null )
+			if(stuckedLeft || stuckedRight || rightNeighbor == null || leftNeighbor == null)
 				SetStucked(true);
+			}
 			
+			if(isStucked() && dir == Direction.Up && GetField()==null || GetField().GetNeighbor(Direction.Down) == null)
+				SetStucked(true);
+		
 			if(isStucked())
 				for(int i = 0 ; i < 4 ; i++)
 					if(i%4 != (dir.ordinal()-2)%4 && GetField().GetNeighbor(Direction.values()[i]) != null && GetField().GetNeighbor(Direction.values()[i]).GetThing() != null)
 						GetField().GetNeighbor(Direction.values()[i]).GetThing().SetStucked(true);
-		}
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	

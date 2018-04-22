@@ -1,0 +1,6 @@
+(Worker) Peti 2 1 0
+(Worker) Karcsi 3 1 0
+--------
+(Worker) Peti 2 1 0
+(Worker) Karcsi 3 1 0
+--------

@@ -1,0 +1,14 @@
+(Field) floor 1 1 2
+(Field) pit 3 1 2
+(Field) floor 4 1 2
+(Field) floor 2 1 2
+--------
+(Worker) Alfréd 1 1 0
+--------
+(Box) 2 1 true
+(Box) 4 1 false
+--------
+(Worker) Alfréd 2 1 0
+--------
+(Box) 4 1 false
+--------

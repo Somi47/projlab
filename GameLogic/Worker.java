@@ -56,6 +56,7 @@ public class Worker extends Thing implements Moveable {
 	public void Die() {
 		FunctionLogger.logFunctionCalled(toString(), "Die()");
 		GetField().GetWarehouse().SetWorkerNumber(GetField().GetWarehouse().GetWorkerNumber()-1);
+		GetField().GetWarehouse().GetWorkers().remove(this);
 		GetField().Remove();
 		FunctionLogger.logFunctionReturnVoid();
 	}
@@ -96,7 +97,7 @@ public class Worker extends Thing implements Moveable {
 	public boolean HitBy(Direction dir, Box b, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
 		boolean canMove = Move(dir, force);
-		canMove = FunctionLogger.askUserDecision("Tud-e mozogni?");
+		//canMove = FunctionLogger.askUserDecision("Tud-e mozogni?");
 		if(!canMove)
 			Die();
 		return FunctionLogger.logFunctionReturn( true );

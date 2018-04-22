@@ -1,0 +1,10 @@
+(Worker) Béla 1 1 0
+(Worker) Józsi 3 1 0
+--------
+(Box) 2 1 true
+--------
+(Worker) Béla 2 1 0
+(Worker) Józsi 4 1 0
+--------
+(Box) 3 1 false
+--------

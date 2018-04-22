@@ -1,0 +1,9 @@
+(Field) floor 3 1 2
+(Field) floor 1 1 2
+(Field) pit 2 1 2
+--------
+(Worker) Vivien 1 1 0
+(Worker) Katinka 3 1 0
+--------
+(Worker) Katinka 3 1 0
+--------

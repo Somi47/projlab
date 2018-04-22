@@ -1,0 +1,8 @@
+loadWarehouse(1, 1, 1)
+placeField(floor, 1, 1, 2)
+placeThing(worker, 1, 1)
+setWorker(Ida, zöld, 4, 0)
+listFields
+listWorkers
+dropOil(Ida)
+listFields

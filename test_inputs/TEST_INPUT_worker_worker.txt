@@ -1,0 +1,11 @@
+loadWarehouse(3, 1, 2)
+placeField(floor, 1, 1, 2)
+placeField(floor, 2, 1, 2)
+placeField(floor, 3, 1, 2)
+placeThing(worker, 2, 1)
+placeThing(worker, 3, 1)
+setWorker(Peti, zöld, 12, 0)
+setWorker(Karcsi, kék, 7, 0)
+listWorkers
+Step(Karcsi, left)
+listWorkers

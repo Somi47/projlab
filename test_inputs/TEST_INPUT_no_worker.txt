@@ -1,0 +1,4 @@
+loadWarehouse(1, 1, 0)
+placeField(floor, 1, 1, 2)
+listFields
+listWorkers

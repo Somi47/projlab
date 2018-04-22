@@ -14,6 +14,7 @@ public class Warehouse extends DebuggedClass {
 	private int workerNumber = 1;
 	private Field[][] fields;
 	private ArrayList<Box> boxes = new ArrayList<Box>();
+	private ArrayList<Worker> workers = new ArrayList<Worker>();
 	
 	
 	/* Harom parameteres konstruktor */
@@ -86,6 +87,13 @@ public class Warehouse extends DebuggedClass {
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	
+	/* Munk�sok listájának beállítása */
+	public void SetWorkers(ArrayList<Worker> w) {
+		FunctionLogger.logFunctionCalled(toString(), "SetWorkers(ArrayList<Worker> w)");
+		workers = w;
+		FunctionLogger.logFunctionReturnVoid();
+	}
+	
 	/* Munkások számának lekérdezése */
 	public int GetWorkerNumber() {
 		FunctionLogger.logFunctionCalled(toString(), "GetWorkerNumber()");
@@ -96,6 +104,12 @@ public class Warehouse extends DebuggedClass {
 	public ArrayList<Box> GetBoxes(){
 		FunctionLogger.logFunctionCalled(toString(), "GetBoxes()");
 		return FunctionLogger.logFunctionReturn( boxes );
+	}
+	
+	/* Munk�slista lekérdezése */
+	public ArrayList<Worker> GetWorkers(){
+		FunctionLogger.logFunctionCalled(toString(), "GetWorkers()");
+		return FunctionLogger.logFunctionReturn( workers );
 	}
 	
 	/* Mezőmátrix lekérdezése */

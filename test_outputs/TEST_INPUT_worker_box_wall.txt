@@ -1,0 +1,14 @@
+(Field) floor 1 1 2
+(Field) floor 3 1 2
+(Field) floor 2 1 2
+--------
+(Worker) Csaba 1 1 0
+--------
+(Box) 2 1 true
+--------
+(Wall) 3 1
+--------
+(Worker) Csaba 1 1 0
+--------
+(Box) 2 1 true
+--------
