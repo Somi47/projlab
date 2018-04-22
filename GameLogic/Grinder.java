@@ -29,14 +29,18 @@ public class Grinder extends Field {
 	public boolean HitBy(Direction dir, Box b, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "HitBy(Direction dir, Box b)");
 		if(GetThing() != null)
-			if(GetThing().HitBy(dir, b, force)) {;
+			if(GetThing().HitBy(dir, b, force)) {
 				b.Destroy();
+				player.AddPoint();
 				return FunctionLogger.logFunctionReturn( true );
 			}
 			else
 				return FunctionLogger.logFunctionReturn( false );
 		else
+		{
 			b.Destroy();
+			player.AddPoint();
+		}
 			return FunctionLogger.logFunctionReturn( true );
 	}
 	

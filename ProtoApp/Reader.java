@@ -178,12 +178,13 @@ public class Reader {
 			created.SetWarehouse(wh);
 			w.GetData().AddField(created, "pit");
 		}
-		else if(type.equalsIgnoreCase("grinder") && tokens.length == 4)
+		else if(type.equalsIgnoreCase("grinder") && tokens.length == 5)
 		{
 			Grinder created = new Grinder();
 			
 			int x = Integer.parseInt(tokens[2]);
 			int y = Integer.parseInt(tokens[3]);
+			
 			
 			if(x < 1 || x > wh.GetFields().length || y < 1 || y > wh.GetFields()[x - 1].length)
 			{
@@ -191,9 +192,18 @@ public class Reader {
 				return;
 			}
 			
+			
 			wh.AddField(created, x - 1, y - 1);
 			created.SetWarehouse(wh);
 			w.GetData().AddField(created, "grinder");
+			
+			for(Worker w : w.GetData().GetWorkers())
+				if(w.GetName().equals(tokens[4]))
+				{
+					created.SetPlayer(w);
+					return;
+				}
+			System.out.println("Worker not found while processing command: \"" + tokens[0] + "\" Skipped!");
 		}
 		else
 		{
