@@ -78,7 +78,10 @@ public class Box extends Thing implements Moveable{
 		if(dir == Direction.Left || dir == Direction.Right)
 		{			
 			boolean stuckedUp  =  true;
-			Field upNeighbor = GetField().GetNeighbor(Direction.Up);
+			Field upNeighbor = null;
+			if(GetField().GetNeighbor(Direction.Up)!= null)
+				upNeighbor = GetField().GetNeighbor(Direction.Up).GetNeighbor(Direction.Up);
+
 			if(upNeighbor != null)
 			{
 				if(upNeighbor.GetThing() != null)
@@ -88,7 +91,9 @@ public class Box extends Thing implements Moveable{
 			}
 			
 			boolean stuckedDown  =  true;
-			Field downNeighbor = GetField().GetNeighbor(Direction.Down);
+			Field downNeighbor = null;
+			if(GetField().GetNeighbor(Direction.Down)!= null)
+				downNeighbor = GetField().GetNeighbor(Direction.Down).GetNeighbor(Direction.Down);
 			if(downNeighbor != null)
 			{
 				if(downNeighbor.GetThing() != null)
@@ -103,7 +108,9 @@ public class Box extends Thing implements Moveable{
 		else // if(dir == Direction.Up || dir == Direction.Down)
 		{
 			boolean stuckedLeft  =  true;
-			Field leftNeighbor = GetField().GetNeighbor(Direction.Left);
+			Field leftNeighbor = null;
+			if(GetField().GetNeighbor(Direction.Left)!= null)
+				leftNeighbor = GetField().GetNeighbor(Direction.Left).GetNeighbor(Direction.Left);
 			if(leftNeighbor != null)
 			{
 				if(leftNeighbor.GetThing() != null)
@@ -113,7 +120,9 @@ public class Box extends Thing implements Moveable{
 			}
 			
 			boolean stuckedRight  =  true;
-			Field rightNeighbor = GetField().GetNeighbor(Direction.Right);
+			Field rightNeighbor = null;
+				if(GetField().GetNeighbor(Direction.Right)!= null)
+					rightNeighbor = GetField().GetNeighbor(Direction.Right).GetNeighbor(Direction.Right);
 			if(rightNeighbor != null)
 			{
 				if(rightNeighbor.GetThing() != null)
