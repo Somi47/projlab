@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import GameLogic.Box;
+import GameLogic.Direction;
 import GameLogic.Field;
 import GameLogic.Floor;
 import GameLogic.Grinder;
@@ -28,7 +29,7 @@ public class Reader {
 	public void ReadFile()
 	{
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("file.txt"));			
+			BufferedReader br = new BufferedReader(new FileReader(filename));			
 		    String line = br.readLine();
 		    
 		    while (line != null) {
@@ -201,18 +202,21 @@ public class Reader {
 		{
 			Worker created = new Worker();
 			field.Add(created);
+			created.SetField(field);
 			w.GetData().AddWorker(created);
 		}
 		else if(type.equalsIgnoreCase("box"))
 		{
 			Box created = new Box();
 			field.Add(created);
+			created.SetField(field);
 			w.GetData().AddBox(created);
 		}
 		else if(type.equalsIgnoreCase("wall"))
 		{
 			Wall created = new Wall();
 			field.Add(created);
+			created.SetField(field);
 			w.GetData().AddWall(created);
 		}
 	}
@@ -245,7 +249,31 @@ public class Reader {
 	
 	private void Step(String[] tokens)
 	{
-		
+		if(tokens.length != 3)
+		{
+			System.out.println("Wrong parameter count for command: \"" + tokens[0] + "\" Skipped!");
+			return;
+		}
+		String dir = new String(tokens[2]);
+		if(!dir.equals("right") && !dir.equals("left") && !dir.equals("up") && !dir.equals("down"))
+		{
+			System.out.println("Wrong direction for command: \"" + tokens[0] + "\" Skipped!");
+			return;
+		}
+		for(Worker w : w.GetData().GetWorkers())
+			if(w.GetName().equals(tokens[1]))
+			{
+				if(tokens[2].equals("up"))
+					w.Move(Direction.Up, w.getForce());
+				if(tokens[2].equals("down"))
+					w.Move(Direction.Down, w.getForce());
+				if(tokens[2].equals("right"))
+					w.Move(Direction.Right, w.getForce());
+				if(tokens[2].equals("left"))
+					w.Move(Direction.Left, w.getForce());
+				return;
+			}
+		System.out.println("Wrong worker name for command: \"" + tokens[0] + "\" Skipped!");
 	}
 	
 	private void DropHoney(String[] tokens)
