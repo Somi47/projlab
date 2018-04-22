@@ -254,6 +254,7 @@ public class Reader {
 			System.out.println("Wrong parameter count for command: \"" + tokens[0] + "\" Skipped!");
 			return;
 		}
+		
 		String dir = new String(tokens[2]);
 		if(!dir.equals("right") && !dir.equals("left") && !dir.equals("up") && !dir.equals("down"))
 		{
@@ -278,12 +279,36 @@ public class Reader {
 	
 	private void DropHoney(String[] tokens)
 	{
+		if(tokens.length != 2)
+		{
+			System.out.println("Wrong parameter count for command: \"" + tokens[0] + "\" Skipped!");
+			return;
+		}
 		
+		for(Worker w: w.GetData().GetWorkers())
+		{
+			if(w.GetName().equals(tokens[1]))
+			{
+				w.dropHoney();
+			}
+		}
 	}
 	
 	private void DropOil(String[] tokens)
 	{
+		if(tokens.length != 2)
+		{
+			System.out.println("Wrong parameter count for command: \"" + tokens[0] + "\" Skipped!");
+			return;
+		}
 		
+		for(Worker w: w.GetData().GetWorkers())
+		{
+			if(w.GetName().equals(tokens[1]))
+			{
+				w.dropOil();
+			}
+		}		
 	}
 	
 	private void ListWorkers(String[] tokens)
