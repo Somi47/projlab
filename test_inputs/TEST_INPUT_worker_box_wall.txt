@@ -3,8 +3,8 @@ placeField(floor, 1, 1, 2)
 placeField(floor, 2, 1, 2)
 placeField(floor, 3, 1, 2)
 placeThing(worker, 1, 1)
-placeThing(box, 2, 1)
 placeThing(wall, 3, 1)
+placeThing(box, 2, 1)
 setWorker(Csaba, sárga, 5, 0)
 listFields
 listWorkers

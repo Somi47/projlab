@@ -22,6 +22,17 @@ public class Pit extends Field {
 		return FunctionLogger.logFunctionReturn( open );
 	}
 	
+	/* Dolog lyukra helyezése. */
+	@Override
+	public void Add(Thing t) {
+		FunctionLogger.logFunctionCalled(toString(), "Add(Thing t)");
+		if(!isOpen())
+			thing = t;
+		else
+			thing = null;
+		FunctionLogger.logFunctionReturnVoid();
+	}
+	
 	/* Lyuknak adott irányba munkás ütközik.
 	 * Ha van rajta dolog ütközteti vele. Ha ráléphet és
 	 * nyitva van, megöli a játékost. 

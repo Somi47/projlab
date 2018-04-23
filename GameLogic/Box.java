@@ -31,8 +31,8 @@ public class Box extends Thing implements Moveable{
 		if(canMove) {
 			GetField().Remove();
 			GetField().GetNeighbor(dir).Add(this);
-			SetField(GetField().GetNeighbor(dir));
-			CheckStucked(dir);
+			if(GetField().GetNeighbor(dir).GetThing()!=null)
+				SetField(GetField().GetNeighbor(dir));
 			return FunctionLogger.logFunctionReturn(true);
 		}
 		return FunctionLogger.logFunctionReturn(false);
@@ -151,9 +151,6 @@ public class Box extends Thing implements Moveable{
 			if(stuckedLeft || stuckedRight || rightNeighbor == null || leftNeighbor == null)
 				SetStucked(true);
 			}
-			
-			if(isStucked() && dir == Direction.Up && GetField()==null || GetField().GetNeighbor(Direction.Down) == null)
-				SetStucked(true);
 		
 			if(isStucked())
 				for(int i = 0 ; i < 4 ; i++)

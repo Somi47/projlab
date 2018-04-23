@@ -5,6 +5,11 @@ import Utility.FunctionLogger;
 /* Dologból típusú fal */
 public class Wall extends Thing {
 
+	/* Paraméter nélküli konstruktor. */
+	public Wall() {
+		SetStucked(true);
+	}
+	
 	/* Falnak adott irányba munkás megy.
 	 * Hamist ad vissza.
 	 */
