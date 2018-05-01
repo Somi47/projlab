@@ -80,7 +80,11 @@ public class Worker extends Thing implements Moveable {
 	 */
 	public boolean Move(Direction dir, int force) {
 		FunctionLogger.logFunctionCalled(toString(), "Move(Direction dir)");
-		boolean canMove = GetField().GetNeighbor(dir).HitBy(dir, this, force);
+		boolean canMove;
+		if(GetField().GetNeighbor(dir) != null )
+			canMove = GetField().GetNeighbor(dir).HitBy(dir, this, force);
+		else
+			canMove = false;
 		if(canMove) {
 			GetField().Remove();
 			GetField().GetNeighbor(dir).Add(this);
