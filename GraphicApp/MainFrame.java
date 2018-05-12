@@ -1,0 +1,105 @@
+package GraphicApp;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Collections;
+
+import javax.swing.*;
+
+/**
+ * A Drawable-ket tárol, akiknek van egy képük 
+ * és egy prioritásuk ami megmondja
+ *  hogy melyiket melyik mellé rajzoljuk.
+ */
+public class MainFrame extends JFrame implements KeyListener
+{
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * A pálya alap panelja.
+	 */
+	private JPanel mapPanel;
+	
+	/**
+	 * A rajzolható objektumok.
+	 */
+	private ArrayList<Drawable> drawables;
+	
+	/**
+	 * Rajzolható objektum hozzáadása.
+	 * @param d Hozzáadandó rajzolható objektum.
+	 */
+	public void AddDrawable(Drawable d) 
+	{
+		drawables.add(d);
+	}
+	
+	/**
+	 * Minden objektum lerajzolása.
+	 */
+	public void DrawAll()
+	{
+		for(Drawable d : drawables)
+			d.Draw();
+	}
+	
+	/**
+	 * Játék vége, az adott játékos vesztett.
+	 */
+	public void gameLost() 
+	{
+		
+	}
+	
+	/**
+	 * Játék vége, az adott játékos nyert.
+	 */
+	public void gameWon() 
+	{ 
+		
+	}
+
+	/**
+	 * Rajzolható objektum eltávolítása.
+	 * @param d Elvávolítandó rajzolható objektum.
+	 */
+	public void removeDrawable(Drawable d) 
+	{
+		drawables.remove(d);
+	}
+
+	/**
+	 * A rajzolható objektumok rendezése.
+	 */
+	public void sortDrawable() 
+	{
+		Collections.sort(drawables,new DrawableComparator());
+	}
+	
+	/**
+	 * Gomb lenyomását figyelõ függvény.
+	 */
+	@Override
+	public void keyPressed(KeyEvent e) 
+	{
+
+	}
+	@Override
+	public void keyReleased(KeyEvent e) 
+	{
+
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e) 
+	{
+
+	}
+	
+	public JPanel GetmapPanel(){ return mapPanel; }
+	public void SetmapPanel(JPanel mp) { mapPanel = mp ;}
+	
+	public ArrayList<Drawable> Getdrawables(){ return drawables; }
+	public void Setdrawables(ArrayList<Drawable> d) { drawables = d ;}
+}
