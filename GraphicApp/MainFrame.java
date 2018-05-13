@@ -1,6 +1,8 @@
 package GraphicApp;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -51,6 +53,13 @@ public class MainFrame extends JFrame implements KeyListener
 		setLayout(new BorderLayout());
 		setSize(800, 600);
 		setResizable(false);
+		setLocationRelativeTo(null);
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		double width = screenSize.getWidth();
+		double height = screenSize.getHeight();
+		
+		setBounds(100, 100, (int) width-200, (int) height-200);
 		
 		mapPanel = new JPanel();
 		add(mapPanel, BorderLayout.CENTER);
@@ -115,10 +124,20 @@ public class MainFrame extends JFrame implements KeyListener
 	{
 		int keycode = e.getKeyCode();
 		
+		if(keycode == KeyEvent.VK_ESCAPE)
+		{
+			exit_dialog ex_dia = new exit_dialog();
+		}
+		
 		switch(keycode)
 		{
 			case KeyEvent.VK_W: wh.GetWorkers().get(0).Move(Direction.Up, wh.GetWorkers().get(0).getForce()); break;
 			case KeyEvent.VK_S: wh.GetWorkers().get(0).Move(Direction.Down, wh.GetWorkers().get(0).getForce()); break;
+			case KeyEvent.VK_A: wh.GetWorkers().get(0).Move(Direction.Left, wh.GetWorkers().get(0).getForce()); break;
+			case KeyEvent.VK_D: wh.GetWorkers().get(0).Move(Direction.Right, wh.GetWorkers().get(0).getForce()); break;
+			case KeyEvent.VK_Q: wh.GetWorkers().get(0).dropHoney(); break;
+			case KeyEvent.VK_E: wh.GetWorkers().get(0).dropOil(); break;
+			
 		}
 	
 		if(wh.GetWorkerNumber() == 2)
@@ -127,6 +146,11 @@ public class MainFrame extends JFrame implements KeyListener
 			{
 				case KeyEvent.VK_UP: wh.GetWorkers().get(1).Move(Direction.Up, wh.GetWorkers().get(0).getForce()); break;
 				case KeyEvent.VK_DOWN: wh.GetWorkers().get(1).Move(Direction.Down, wh.GetWorkers().get(0).getForce()); break;
+				case KeyEvent.VK_LEFT: wh.GetWorkers().get(0).Move(Direction.Left, wh.GetWorkers().get(0).getForce()); break;
+				case KeyEvent.VK_RIGHT: wh.GetWorkers().get(0).Move(Direction.Right, wh.GetWorkers().get(0).getForce()); break;
+				case KeyEvent.VK_SHIFT: wh.GetWorkers().get(0).dropHoney(); break;
+				case KeyEvent.VK_CONTROL: wh.GetWorkers().get(0).dropOil(); break;
+
 			}
 		}
 	}
