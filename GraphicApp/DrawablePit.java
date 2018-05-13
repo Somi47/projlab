@@ -1,5 +1,6 @@
 package GraphicApp;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -21,16 +22,28 @@ public class DrawablePit extends Drawable
 	/**
 	 * A lyuk képe.
 	 */
-	private Image imgPit = null;
+	private Image imgPitOpen = null;
+	private Image imgPitClosed = null;
 	
 	public DrawablePit()
 	{
-		if (imgPit == null)
+		if (imgPitOpen == null)
 		{			
 			try 
 			{
-				if (pit.isOpen()) imgPit = ImageIO.read(new File("pit.jpg"));
-					else imgPit = ImageIO.read(new File("pit_closed.jpg"));
+				imgPitOpen = ImageIO.read(new File("pit.jpg"));
+			}
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		if (imgPitClosed == null)
+		{			
+			try 
+			{
+				imgPitClosed = ImageIO.read(new File("pit_closed.jpg"));
 			}
 			catch (IOException e) 
 			{
@@ -42,13 +55,15 @@ public class DrawablePit extends Drawable
 	 * A kép kirajzolása az adott dologra.
 	 */
 	@Override
-	public void Draw()
+	public void Draw(Graphics g)
 	{
-		int mezo_meret = 20;
 		int x = pit.GetX() * mezo_meret;
 		int y = pit.GetY() * mezo_meret;
 		
-		Getimg().getGraphics().drawImage(imgPit, x, y, mezo_meret, mezo_meret, null);
+		if(pit.isOpen())
+			g.drawImage(imgPitOpen, x, y, mezo_meret, mezo_meret, null);
+		else
+			g.drawImage(imgPitClosed, x, y, mezo_meret, mezo_meret, null);
 	}
 	
 	public Pit Getpit() { return pit; }

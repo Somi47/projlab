@@ -2,6 +2,7 @@ package GraphicApp;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -25,7 +26,7 @@ public class MainFrame extends JFrame implements KeyListener
 	/**
 	 * A pálya alap panelja.
 	 */
-	private JPanel mapPanel;
+	private MapPanel mapPanel;
 	
 	/**
 	 * A rajzolható objektumok.
@@ -61,7 +62,7 @@ public class MainFrame extends JFrame implements KeyListener
 		
 		setBounds(100, 100, (int) width-200, (int) height-200);
 		
-		mapPanel = new JPanel();
+		mapPanel = new MapPanel();
 		add(mapPanel, BorderLayout.CENTER);
 	}
 	
@@ -77,10 +78,11 @@ public class MainFrame extends JFrame implements KeyListener
 	/**
 	 * Minden objektum lerajzolása.
 	 */
-	public void DrawAll()
+	public void DrawAll(Graphics g)
 	{
+		drawables.sort(new DrawableComparator());
 		for(Drawable d : drawables)
-			d.Draw();
+			d.Draw(g);
 	}
 	
 	/**
@@ -147,15 +149,17 @@ public class MainFrame extends JFrame implements KeyListener
 		{
 			switch(keycode)
 			{
-				case KeyEvent.VK_UP: wh.GetWorkers().get(1).Move(Direction.Up, wh.GetWorkers().get(0).getForce()); break;
-				case KeyEvent.VK_DOWN: wh.GetWorkers().get(1).Move(Direction.Down, wh.GetWorkers().get(0).getForce()); break;
-				case KeyEvent.VK_LEFT: wh.GetWorkers().get(0).Move(Direction.Left, wh.GetWorkers().get(0).getForce()); break;
-				case KeyEvent.VK_RIGHT: wh.GetWorkers().get(0).Move(Direction.Right, wh.GetWorkers().get(0).getForce()); break;
-				case KeyEvent.VK_SHIFT: wh.GetWorkers().get(0).dropHoney(); break;
-				case KeyEvent.VK_CONTROL: wh.GetWorkers().get(0).dropOil(); break;
+				case KeyEvent.VK_UP: wh.GetWorkers().get(1).Move(Direction.Up, wh.GetWorkers().get(1).getForce()); break;
+				case KeyEvent.VK_DOWN: wh.GetWorkers().get(1).Move(Direction.Down, wh.GetWorkers().get(1).getForce()); break;
+				case KeyEvent.VK_LEFT: wh.GetWorkers().get(1).Move(Direction.Left, wh.GetWorkers().get(1).getForce()); break;
+				case KeyEvent.VK_RIGHT: wh.GetWorkers().get(1).Move(Direction.Right, wh.GetWorkers().get(1).getForce()); break;
+				case KeyEvent.VK_SHIFT: wh.GetWorkers().get(1).dropHoney(); break;
+				case KeyEvent.VK_CONTROL: wh.GetWorkers().get(1).dropOil(); break;
 
 			}
 		}
+		
+		repaint();
 	}
 	@Override
 	public void keyReleased(KeyEvent e) 
@@ -168,9 +172,6 @@ public class MainFrame extends JFrame implements KeyListener
 	{
 
 	}
-	
-	public JPanel GetmapPanel(){ return mapPanel; }
-	public void SetmapPanel(JPanel mp) { mapPanel = mp ;}
 	
 	public ArrayList<Drawable> Getdrawables(){ return drawables; }
 	public void Setdrawables(ArrayList<Drawable> d) { drawables = d ;}

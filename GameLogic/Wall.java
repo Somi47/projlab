@@ -14,7 +14,7 @@ public class Wall extends Thing {
 		{
 			DrawableWall dw = new DrawableWall();
 			dw.Setwall(this);
-			dw.Setpriority(0);
+			dw.Setpriority(2);
 			Program.mf.AddDrawable(dw);
 			drawable = dw;
 		}

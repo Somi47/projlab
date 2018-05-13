@@ -26,6 +26,7 @@ public class Warehouse extends DebuggedClass {
 	
 	/* Mezõ felvétele a raktárba */
 	public void AddField(Field f, int x, int y) {
+		f.SetWarehouse(this);
 		fields[x][y] = f;
 		
 		if(x == 0)
@@ -149,123 +150,148 @@ public class Warehouse extends DebuggedClass {
 		for(int i = 0; i < x; ++i)
 		{
 			Floor floor = new Floor();
-			floor.Add(new Wall());
-			AddField(floor, 0, i);
+			Wall wall = new Wall(); 
+			wall.SetField(floor);
+			floor.Add(wall);
+			AddField(floor, i, 0);
 		}
 		
 		// alsó sor
 		for(int i = 0; i < x; ++i)
 		{
 			Floor floor = new Floor();
-			floor.Add(new Wall());
-			AddField(floor, y-1, i);
+			Wall wall = new Wall(); 
+			wall.SetField(floor);
+			floor.Add(wall);
+			AddField(floor, i, y-1);
 		}
 		
 		// bal oszlop
 		for(int i = 1; i < y - 1; ++i)
 		{
 			Floor floor = new Floor();
-			floor.Add(new Wall());
-			AddField(floor, i, 0);
+			Wall wall = new Wall(); 
+			wall.SetField(floor);
+			floor.Add(wall);
+			AddField(floor, 0, i);
 		}
 		
 		// jobb oszlop
 		for(int i = 1; i < y - 1; ++i)
 		{
 			Floor floor = new Floor();
-			floor.Add(new Wall());
-			AddField(floor, i, x-1);
+			Wall wall = new Wall(); 
+			wall.SetField(floor);
+			floor.Add(wall);
+			AddField(floor, x-1, i);
 		}
 		
 		// közbülső falak
 		Floor floor;
+		Wall wall;
 		floor = new Floor();
-		floor.Add(new Wall());
-		AddField(floor, 1, 3);
-
-		floor = new Floor();
-		floor.Add(new Wall());
-		AddField(floor, 2, 3);
-
-		floor = new Floor();
-		floor.Add(new Wall());
+		wall = new Wall(); 
+		wall.SetField(floor);
+		floor.Add(wall);
 		AddField(floor, 3, 1);
+
+		floor = new Floor();
+		wall = new Wall(); 
+		wall.SetField(floor);
+		floor.Add(wall);
+		AddField(floor, 3, 2);
+
+		floor = new Floor();
+		wall = new Wall(); 
+		wall.SetField(floor);
+		floor.Add(wall);
+		AddField(floor, 1, 3);
 		
 		floor = new Floor();
-		floor.Add(new Wall());
+		wall = new Wall(); 
+		wall.SetField(floor);
+		floor.Add(wall);
 		AddField(floor, 3, 6);
 		
 		floor = new Floor();
-		floor.Add(new Wall());
-		AddField(floor, 3, 7);
+		wall = new Wall(); 
+		wall.SetField(floor);
+		floor.Add(wall);
+		AddField(floor, 7, 3);
 		
 		floor = new Floor();
-		floor.Add(new Wall());
-		AddField(floor, 4, 7);
+		wall = new Wall(); 
+		wall.SetField(floor);
+		floor.Add(wall);
+		AddField(floor, 7, 4);
 		
 		floor = new Floor();
-		floor.Add(new Wall());
-		AddField(floor, 5, 3);
+		wall = new Wall(); 
+		wall.SetField(floor);
+		floor.Add(wall);
+		AddField(floor, 3, 5);
 
 		floor = new Floor();
-		floor.Add(new Wall());
-		AddField(floor, 6, 3);
+		wall = new Wall(); 
+		wall.SetField(floor);
+		floor.Add(wall);
+		AddField(floor, 3, 6);
 		
 		// üres mezők, amiken rendom doboz lehet
 		CreateFloorRandomBox(1, 1);
-		CreateFloorRandomBox(1, 4);
-		CreateFloorRandomBox(1, 5);
-		CreateFloorRandomBox(1, 6);
-		CreateFloorRandomBox(1, 8);
-		
-		CreateFloorRandomBox(2, 1);
-		CreateFloorRandomBox(2, 2);
-		CreateFloorRandomBox(2, 4);
-		CreateFloorRandomBox(2, 5);
-		CreateFloorRandomBox(2, 6);
-		CreateFloorRandomBox(2, 7);
-		
-		CreateFloorRandomBox(3, 2);
-		CreateFloorRandomBox(3, 4);
-		CreateFloorRandomBox(3, 5);
-		
 		CreateFloorRandomBox(4, 1);
-		CreateFloorRandomBox(4, 2);
-		CreateFloorRandomBox(4, 3);
-		CreateFloorRandomBox(4, 7);
-		CreateFloorRandomBox(4, 8);
-		
 		CreateFloorRandomBox(5, 1);
-		CreateFloorRandomBox(5, 2);
-		CreateFloorRandomBox(5, 4);
-		CreateFloorRandomBox(5, 5);
-		CreateFloorRandomBox(5, 6);
-		CreateFloorRandomBox(5, 7);
-		CreateFloorRandomBox(5, 8);
-		
-		CreateFloorRandomBox(6, 2);
-		CreateFloorRandomBox(6, 4);
-		CreateFloorRandomBox(6, 5);
-		CreateFloorRandomBox(6, 6);
-		CreateFloorRandomBox(6, 7);
-		CreateFloorRandomBox(6, 8);
-
-		CreateFloorRandomBox(7, 1);
-		CreateFloorRandomBox(7, 2);
-		CreateFloorRandomBox(7, 3);
-		CreateFloorRandomBox(7, 4);
-		CreateFloorRandomBox(7, 5);
-		CreateFloorRandomBox(7, 6);
-		CreateFloorRandomBox(7, 7);
-		CreateFloorRandomBox(7, 8);
-
+		CreateFloorRandomBox(6, 1);
 		CreateFloorRandomBox(8, 1);
-		CreateFloorRandomBox(8, 2);
-		CreateFloorRandomBox(8, 3);
+		
+		CreateFloorRandomBox(1, 2);
+		CreateFloorRandomBox(2, 2);
+		CreateFloorRandomBox(4, 2);
+		CreateFloorRandomBox(5, 2);
+		CreateFloorRandomBox(6, 2);
+		CreateFloorRandomBox(7, 2);
+		
+		CreateFloorRandomBox(2, 3);
+		CreateFloorRandomBox(4, 3);
+		CreateFloorRandomBox(5, 3);
+		
+		CreateFloorRandomBox(1, 4);
+		CreateFloorRandomBox(2, 4);
+		CreateFloorRandomBox(3, 4);
+		CreateFloorRandomBox(7, 4);
 		CreateFloorRandomBox(8, 4);
+		
+		CreateFloorRandomBox(1, 5);
+		CreateFloorRandomBox(2, 5);
+		CreateFloorRandomBox(4, 5);
+		CreateFloorRandomBox(5, 5);
+		CreateFloorRandomBox(6, 5);
+		CreateFloorRandomBox(7, 5);
 		CreateFloorRandomBox(8, 5);
+		
+		CreateFloorRandomBox(2, 6);
+		CreateFloorRandomBox(4, 6);
+		CreateFloorRandomBox(5, 6);
+		CreateFloorRandomBox(6, 6);
+		CreateFloorRandomBox(7, 6);
 		CreateFloorRandomBox(8, 6);
+
+		CreateFloorRandomBox(1, 7);
+		CreateFloorRandomBox(2, 7);
+		CreateFloorRandomBox(3, 7);
+		CreateFloorRandomBox(4, 7);
+		CreateFloorRandomBox(5, 7);
+		CreateFloorRandomBox(6, 7);
+		CreateFloorRandomBox(7, 7);
 		CreateFloorRandomBox(8, 7);
+
+		CreateFloorRandomBox(1, 8);
+		CreateFloorRandomBox(2, 8);
+		CreateFloorRandomBox(3, 8);
+		CreateFloorRandomBox(4, 8);
+		CreateFloorRandomBox(5, 8);
+		CreateFloorRandomBox(6, 8);
+		CreateFloorRandomBox(7, 8);
 		CreateFloorRandomBox(8, 8);
 		
 		// switches and pits
@@ -273,36 +299,45 @@ public class Warehouse extends DebuggedClass {
 		AddField(pit1, 3, 3);
 
 		Pit pit2 = new Pit();
-		AddField(pit2, 3, 8);
+		AddField(pit2, 8, 3);
 		
 		Switch switch1 = new Switch();
 		switch1.SetPit(pit1);
-		AddField(switch1, 1, 7);
+		AddField(switch1, 7, 1);
 		
 		Switch switch2 = new Switch();
 		switch2.SetPit(pit2);
-		AddField(switch2, 6, 1);
+		AddField(switch2, 1, 6);
 		
 		// Workers and grinders
 		Worker worker1 = new Worker();
 		floor = new Floor();
 		floor.Add(worker1);
+		worker1.SetField(floor);
 		AddField(floor, 4, 4);
 		workers.add(worker1);
 		
 		Grinder grinder1 = new Grinder();
-		AddField(grinder1, 1, 2);
+		AddField(grinder1, 2, 1);
+		grinder1.SetPlayer(worker1);
 		
 		if(workerNumber == 2)
 		{
 			Worker worker2 = new Worker();
 			floor = new Floor();
 			floor.Add(worker2);
-			AddField(floor, 4, 5);
+			worker2.SetField(floor);
+			AddField(floor, 5, 4);
 			workers.add(worker2);
 			
 			Grinder grinder2 = new Grinder();
-			AddField(grinder2, 2, 8);
+			AddField(grinder2, 8, 2);
+			grinder2.SetPlayer(worker2);
+		}
+		else
+		{
+			CreateFloorRandomBox(5, 4);
+			CreateFloorRandomBox(8, 2);
 		}
 		
 		FunctionLogger.logFunctionReturnVoid();
@@ -313,14 +348,14 @@ public class Warehouse extends DebuggedClass {
 		Random rand = new Random();
 		
 		Floor floor = new Floor();
-		if(rand.nextInt(5) == 0)
+		AddField(floor, x, y);
+		if(rand.nextInt(8) == 0)
 		{
 			Box box = new Box();
+			box.SetField(floor);
 			floor.Add(box);
 			boxes.add(box);
-		}
-			
-		AddField(floor, x, y);
+		}			
 	}
 	
 	/* Játék végének ellenőrzése.

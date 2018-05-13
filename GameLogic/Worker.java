@@ -19,7 +19,7 @@ public class Worker extends Thing implements Moveable {
 		{
 			DrawableWorker dw = new DrawableWorker();
 			dw.Setworker(this);
-			dw.Setpriority(0);
+			dw.Setpriority(2);
 			Program.mf.AddDrawable(dw);
 			drawable = dw;
 		}

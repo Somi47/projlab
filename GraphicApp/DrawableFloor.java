@@ -1,5 +1,6 @@
 package GraphicApp;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class DrawableFloor extends Drawable
 		{
 			try
 			{
-				imgFloor = ImageIO.read(new File("floor.jpg"));
+				imgFloor = ImageIO.read(new File("field.jpg"));
 			}
 			catch (IOException e) 
 			{
@@ -41,13 +42,12 @@ public class DrawableFloor extends Drawable
 	 * A kép kirajzolása az adott dologra.
 	 */
 	@Override
-	public void Draw()
+	public void Draw(Graphics g)
 	{
-		int mezo_meret = 20;
 		int x = floor.GetX() * mezo_meret;
 		int y = floor.GetY() * mezo_meret;
 		
-		Getimg().getGraphics().drawImage(imgFloor, x, y, mezo_meret, mezo_meret, null);
+		g.drawImage(imgFloor, x, y, mezo_meret, mezo_meret, null);
 	}
 	
 	public Floor Getfloor() { return floor; }

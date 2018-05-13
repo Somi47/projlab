@@ -1,5 +1,6 @@
 package GraphicApp;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -16,8 +17,7 @@ public class DrawableWorker extends Drawable
 	/**
 	 * A képekhez tartozó munkások.
 	 */
-	private Worker worker1;
-	private Worker worker2;
+	private Worker worker;
 	
 	/**
 	 * A játékosok képei.
@@ -56,21 +56,18 @@ public class DrawableWorker extends Drawable
 	 * A kép kirajzolása az adott dologra.
 	 */
 	@Override
-	public void Draw()
+	public void Draw(Graphics g)
 	{
-		int mezo_meret = 20;
-		int x1 = worker1.GetField().GetX() * mezo_meret;
-		int y1 = worker1.GetField().GetY() * mezo_meret;
+		int x1 = worker.GetField().GetX() * mezo_meret;
+		int y1 = worker.GetField().GetY() * mezo_meret;
 		
-		Getimg().getGraphics().drawImage(imgPlayer1, x1, y1, mezo_meret, mezo_meret, null);
-		
-		int x2 = worker2.GetField().GetX() * mezo_meret;
-		int y2 = worker2.GetField().GetY() * mezo_meret;
-		
-		Getimg().getGraphics().drawImage(imgPlayer2, x2, y2, mezo_meret, mezo_meret, null);
+		if(worker == worker.GetField().GetWarehouse().GetWorkers().get(0))
+			g.drawImage(imgPlayer1, x1, y1, mezo_meret, mezo_meret, null);
+		else
+			g.drawImage(imgPlayer2, x1, y1, mezo_meret, mezo_meret, null);
 	}
 	
-    public Worker Getworker() { return worker1; }
-	public void Setworker(Worker w) { worker1 = w; }
+    public Worker Getworker() { return worker; }
+	public void Setworker(Worker w) { worker = w; }
 	
 }

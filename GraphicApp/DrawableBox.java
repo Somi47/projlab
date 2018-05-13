@@ -1,5 +1,6 @@
 package GraphicApp;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -42,13 +43,12 @@ public class DrawableBox extends Drawable
 	 * A kép kirajzolása az adott dologra.
 	 */
 	@Override
-	public void Draw()
+	public void Draw(Graphics g)
 	{
-		int mezo_meret = 20;
 		int x = box.GetField().GetX() * mezo_meret;
 		int y = box.GetField().GetY() * mezo_meret;
 		
-		Getimg().getGraphics().drawImage(imgBox, x, y, mezo_meret, mezo_meret, null);
+		g.drawImage(imgBox, x, y, mezo_meret, mezo_meret, null);
 
 	}
 	

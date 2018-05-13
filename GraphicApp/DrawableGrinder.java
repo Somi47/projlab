@@ -1,5 +1,6 @@
 package GraphicApp;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -16,8 +17,7 @@ public class DrawableGrinder extends Drawable
 	/**
 	 * A képekhez tartozó darálók.
 	 */
-	private Grinder grinder1;
-	private Grinder grinder2;
+	private Grinder grinder;
 	
 	/**
 	 * A darálók képei.
@@ -55,20 +55,17 @@ public class DrawableGrinder extends Drawable
 	 * A kép kirajzolása az adott dologra.
 	 */
 	@Override
-	public void Draw()
+	public void Draw(Graphics g)
 	{
-		int mezo_meret = 20;
-		int x1 = grinder1.GetX() * mezo_meret;
-		int y1 = grinder1.GetY() * mezo_meret;
+		int x1 = grinder.GetX() * mezo_meret;
+		int y1 = grinder.GetY() * mezo_meret;
 		
-		Getimg().getGraphics().drawImage(imgGrinder1, x1, y1, mezo_meret, mezo_meret, null);
-		
-		int x2 = grinder2.GetX() * mezo_meret;
-		int y2 = grinder2.GetY() * mezo_meret;
-		
-		Getimg().getGraphics().drawImage(imgGrinder2, x2, y2, mezo_meret, mezo_meret, null);
+		if(grinder.GetPlayer() == grinder.GetWarehouse().GetWorkers().get(0))
+			g.drawImage(imgGrinder1, x1, y1, mezo_meret, mezo_meret, null);
+		else
+			g.drawImage(imgGrinder2, x1, y1, mezo_meret, mezo_meret, null);
 	}
 	
-	public Grinder Getgrinder() { return grinder1; }
-	public void Setgrinder(Grinder g) { grinder1 = g; } 
+	public Grinder Getgrinder() { return grinder; }
+	public void Setgrinder(Grinder g) { grinder = g; } 
 }

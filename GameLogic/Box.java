@@ -14,7 +14,7 @@ public class Box extends Thing implements Moveable{
 		{
 			DrawableBox db = new DrawableBox();
 			db.Setbox(this);
-			db.Setpriority(0);
+			db.Setpriority(2);
 			Program.mf.AddDrawable(db);
 			drawable = db;
 		}

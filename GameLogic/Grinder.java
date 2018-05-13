@@ -9,7 +9,7 @@ import Utility.FunctionLogger;
  */
 public class Grinder extends Field {
 	
-	private Worker player = new Worker();
+	private Worker player;
 	
 	public Grinder()
 	{
