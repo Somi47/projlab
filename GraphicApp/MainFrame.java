@@ -127,6 +127,9 @@ public class MainFrame extends JFrame implements KeyListener
 		if(keycode == KeyEvent.VK_ESCAPE)
 		{
 			exit_dialog ex_dia = new exit_dialog();
+			ex_dia.setLocationRelativeTo(null);
+			ex_dia.setVisible(true);
+			
 		}
 		
 		switch(keycode)

@@ -8,6 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
 
 public class exit_dialog extends JDialog
 {
@@ -40,31 +42,38 @@ public class exit_dialog extends JDialog
 	 */
 	public exit_dialog()
 	{
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 126);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(255, 255, 255));
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
-			JLabel label = new JLabel("");
-			contentPanel.add(label);
+			JLabel lblAreYouSure = new JLabel("Are you sure want to quit?");
+			lblAreYouSure.setBackground(new Color(255, 0, 0));
+			lblAreYouSure.setFont(new Font("DialogInput", Font.BOLD, 25));
+			contentPanel.add(lblAreYouSure);
 		}
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			buttonPane.setBackground(new Color(255, 255, 255));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			{
-				JButton okButton = new JButton("Exit");
+				JButton okButton = new JButton("Yes");
+				okButton.setForeground(new Color(0, 0, 0));
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("No");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 	}
+	
+	
 
 }
