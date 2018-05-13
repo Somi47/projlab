@@ -1,11 +1,14 @@
 package GraphicApp;
 
+import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import javax.swing.*;
+
+import GameLogic.Warehouse;
 
 /**
  * A Drawable-ket tárol, akiknek van egy képük 
@@ -25,6 +28,32 @@ public class MainFrame extends JFrame implements KeyListener
 	 * A rajzolható objektumok.
 	 */
 	private ArrayList<Drawable> drawables;
+	
+	/**
+	 * A Warehouse.
+	 */
+	private Warehouse wh;	
+	
+	/**
+	 * A MainFrame konstruktora.
+	 * @param wh A warehouse.
+	 */
+	public MainFrame(Warehouse wh)
+	{
+		this.wh = wh;
+		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setTitle("csatornapatkanyok");
+	
+		addKeyListener(this);
+		setFocusTraversalKeysEnabled(false);
+		setLayout(new BorderLayout());
+		setSize(800, 600);
+		setResizable(false);
+		
+		mapPanel = new JPanel();
+		add(mapPanel, BorderLayout.CENTER);
+	}
 	
 	/**
 	 * Rajzolható objektum hozzáadása.

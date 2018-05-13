@@ -1,9 +1,12 @@
 package GraphicApp;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+
+import GameLogic.Warehouse;
 import GameLogic.Worker;
 
 /**
@@ -30,6 +33,23 @@ public class Menu extends JFrame
 	 * Kétjátékos mód kiválasztása.
 	 */
 	private JButton player2Button;
+	
+	/**
+	 * A Menu konstruktora.
+	 */
+	public Menu()
+	{		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setTitle("csatornapatkanyok");
+	
+		setFocusTraversalKeysEnabled(false);
+		setLayout(new BorderLayout());
+		setSize(800, 600);
+		setResizable(false);
+		
+		menuPanel = new JPanel();
+		add(menuPanel, BorderLayout.CENTER);
+	}	
 	
 	/**
 	 * Kilépés a játékból.
@@ -69,7 +89,9 @@ public class Menu extends JFrame
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-
+			Warehouse wh = new Warehouse(20, 20, 1);  
+			MainFrame frame = new MainFrame(wh);
+			frame.setVisible( true );
 		}
 
 	}
@@ -87,7 +109,9 @@ public class Menu extends JFrame
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-
+			Warehouse wh = new Warehouse(20, 20, 2);
+			MainFrame frame = new MainFrame(wh);
+			frame.setVisible( true );
 		}
 
 	}
