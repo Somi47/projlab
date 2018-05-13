@@ -8,6 +8,7 @@ import java.util.Collections;
 
 import javax.swing.*;
 
+import GameLogic.Direction;
 import GameLogic.Warehouse;
 
 /**
@@ -112,7 +113,22 @@ public class MainFrame extends JFrame implements KeyListener
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
-
+		int keycode = e.getKeyCode();
+		
+		switch(keycode)
+		{
+			case KeyEvent.VK_W: wh.GetWorkers().get(0).Move(Direction.Up, wh.GetWorkers().get(0).getForce()); break;
+			case KeyEvent.VK_S: wh.GetWorkers().get(0).Move(Direction.Down, wh.GetWorkers().get(0).getForce()); break;
+		}
+	
+		if(wh.GetWorkerNumber() == 2)
+		{
+			switch(keycode)
+			{
+				case KeyEvent.VK_UP: wh.GetWorkers().get(1).Move(Direction.Up, wh.GetWorkers().get(0).getForce()); break;
+				case KeyEvent.VK_DOWN: wh.GetWorkers().get(1).Move(Direction.Down, wh.GetWorkers().get(0).getForce()); break;
+			}
+		}
 	}
 	@Override
 	public void keyReleased(KeyEvent e) 

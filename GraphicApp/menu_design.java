@@ -154,8 +154,10 @@ public class menu_design
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Warehouse wh = new Warehouse(20, 20, 1);  
-				MainFrame frame = new MainFrame(wh);
-				frame.setVisible( true );
+				MainFrame mainframe = new MainFrame(wh);
+				mainframe.setVisible(true);
+				frame.setVisible(false);
+				
 			}
 		});
 		panel_3.setBackground(new Color(0, 153, 204));
@@ -182,8 +184,9 @@ public class menu_design
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Warehouse wh = new Warehouse(20, 20, 2);
-				MainFrame frame = new MainFrame(wh);
-				frame.setVisible( true );
+				MainFrame mainframe = new MainFrame(wh);
+				mainframe.setVisible(true);
+				frame.setVisible(false);
 			}
 		});
 		panel_4.setBackground(new Color(51, 102, 0));
