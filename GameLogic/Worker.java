@@ -1,5 +1,7 @@
 package GameLogic;
 
+import GraphicApp.DrawableWorker;
+import GraphicApp.Program;
 import Utility.FunctionLogger;
 
 /* Dolog típusú munkás.
@@ -10,6 +12,18 @@ public class Worker extends Thing implements Moveable {
 	private String name;
 	private int points = 0;
 	private int Force = 6;
+	
+	public Worker()
+	{
+		if(Program.mf != null)
+		{
+			DrawableWorker dw = new DrawableWorker();
+			dw.Setworker(this);
+			dw.Setpriority(0);
+			Program.mf.AddDrawable(dw);
+			drawable = dw;
+		}
+	}
 	
 	/* Munkás erejének beállítása */
 	public void setForce(int f) {
@@ -58,6 +72,12 @@ public class Worker extends Thing implements Moveable {
 		GetField().GetWarehouse().SetWorkerNumber(GetField().GetWarehouse().GetWorkerNumber()-1);
 		GetField().GetWarehouse().GetWorkers().remove(this);
 		GetField().Remove();
+		
+		if(Program.mf != null)
+		{
+			Program.mf.removeDrawable(drawable);
+		}
+		
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	

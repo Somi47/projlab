@@ -156,7 +156,7 @@ public class Program
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Warehouse wh = new Warehouse(20, 20, 1);  
+				Warehouse wh = new Warehouse(10, 10, 1);  
 				MainFrame mainframe = new MainFrame(wh);
 				Program.mf = mainframe;
 				wh.Initialize();
@@ -188,7 +188,7 @@ public class Program
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Warehouse wh = new Warehouse(20, 20, 2);
+				Warehouse wh = new Warehouse(10, 10, 2);
 				MainFrame mainframe = new MainFrame(wh);
 				Program.mf = mainframe;
 				wh.Initialize();

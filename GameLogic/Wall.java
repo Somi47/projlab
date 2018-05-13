@@ -1,5 +1,7 @@
 package GameLogic;
 
+import GraphicApp.DrawableWall;
+import GraphicApp.Program;
 import Utility.FunctionLogger;
 
 /* Dologból típusú fal */
@@ -8,6 +10,14 @@ public class Wall extends Thing {
 	/* Paraméter nélküli konstruktor. */
 	public Wall() {
 		SetStucked(true);
+		if(Program.mf != null)
+		{
+			DrawableWall dw = new DrawableWall();
+			dw.Setwall(this);
+			dw.Setpriority(0);
+			Program.mf.AddDrawable(dw);
+			drawable = dw;
+		}
 	}
 	
 	/* Falnak adott irányba munkás megy.

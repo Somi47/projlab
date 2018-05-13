@@ -1,5 +1,7 @@
 package GameLogic;
 
+import GraphicApp.DrawableGrinder;
+import GraphicApp.Program;
 import Utility.FunctionLogger;
 
 /* Mezõ típusú daráló 
@@ -8,6 +10,17 @@ import Utility.FunctionLogger;
 public class Grinder extends Field {
 	
 	private Worker player = new Worker();
+	
+	public Grinder()
+	{
+		if(Program.mf != null)
+		{
+			DrawableGrinder dg = new DrawableGrinder();
+			dg.Setgrinder(this);
+			dg.Setpriority(1);
+			Program.mf.AddDrawable(dg);
+		}
+	}
 	
 	/* Daráló játékosának beálltása */
 	public void SetPlayer(Worker p) {

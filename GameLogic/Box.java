@@ -1,10 +1,24 @@
 package GameLogic;
 
+import GraphicApp.DrawableBox;
+import GraphicApp.Program;
 import Utility.FunctionLogger;
 
 
 /* Moveable-bõl leszármazõ doboz osztály */
 public class Box extends Thing implements Moveable{
+	
+	public Box()
+	{
+		if(Program.mf != null)
+		{
+			DrawableBox db = new DrawableBox();
+			db.Setbox(this);
+			db.Setpriority(0);
+			Program.mf.AddDrawable(db);
+			drawable = db;
+		}
+	}
 	
 	/* Doboz elpusztítása.
 	 * Lekérdezi a mezõt, amelyiken a doboz áll, majd törli 
@@ -15,6 +29,12 @@ public class Box extends Thing implements Moveable{
 		GetField().Remove();
 		GetField().Remove();
 		GetField().GetWarehouse().RemoveBox(this);
+		
+		if(Program.mf != null)
+		{
+			Program.mf.removeDrawable(drawable);
+		}
+		
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	

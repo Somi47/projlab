@@ -1,5 +1,7 @@
 package GameLogic;
 
+import GraphicApp.DrawableSwitch;
+import GraphicApp.Program;
 import Utility.FunctionLogger;
 
 /* Mezõ típusú kapcsoló.
@@ -8,6 +10,17 @@ import Utility.FunctionLogger;
 public class Switch extends Field {
 	
 	private Pit pit;
+	
+	public Switch()
+	{
+		if(Program.mf != null)
+		{
+			DrawableSwitch ds = new DrawableSwitch();
+			ds.Setswitch(this);
+			ds.Setpriority(1);
+			Program.mf.AddDrawable(ds);
+		}
+	}
 	
 	/* Lyuk beállítása */
 	public void SetPit(Pit p) {

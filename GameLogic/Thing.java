@@ -1,5 +1,6 @@
 package GameLogic;
 
+import GraphicApp.Drawable;
 import Utility.DebuggedClass;
 import Utility.FunctionLogger;
 
@@ -8,6 +9,7 @@ import Utility.FunctionLogger;
  * amin a dolog áll.
  */
 public abstract class Thing extends DebuggedClass {
+	protected Drawable drawable;
 	
 	private boolean stucked = false;
 	private Field field;

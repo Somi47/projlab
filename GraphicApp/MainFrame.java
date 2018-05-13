@@ -30,7 +30,7 @@ public class MainFrame extends JFrame implements KeyListener
 	/**
 	 * A rajzolható objektumok.
 	 */
-	private ArrayList<Drawable> drawables;
+	private ArrayList<Drawable> drawables = new ArrayList<Drawable>();
 	
 	/**
 	 * A Warehouse.

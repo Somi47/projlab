@@ -1,5 +1,7 @@
 package GameLogic;
 
+import GraphicApp.DrawablePit;
+import GraphicApp.Program;
 import Utility.FunctionLogger;
 
 /* Mezõ típusú lyuk.
@@ -8,6 +10,17 @@ import Utility.FunctionLogger;
 public class Pit extends Field {
 
 	private boolean open;
+	
+	public Pit()
+	{
+		if(Program.mf != null)
+		{
+			DrawablePit dp = new DrawablePit();
+			dp.Setpit(this);
+			dp.Setpriority(1);
+			Program.mf.AddDrawable(dp);
+		}
+	}
 	
 	/* Nyitottsági állapot beállítása */
 	public void SetOpen(boolean b) {
