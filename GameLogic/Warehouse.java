@@ -211,7 +211,7 @@ public class Warehouse extends DebuggedClass {
 		wall = new Wall(); 
 		wall.SetField(floor);
 		floor.Add(wall);
-		AddField(floor, 3, 6);
+		AddField(floor, 6, 3);
 		
 		floor = new Floor();
 		wall = new Wall(); 
@@ -223,7 +223,7 @@ public class Warehouse extends DebuggedClass {
 		wall = new Wall(); 
 		wall.SetField(floor);
 		floor.Add(wall);
-		AddField(floor, 7, 4);
+		AddField(floor, 6, 4);
 		
 		floor = new Floor();
 		wall = new Wall(); 
