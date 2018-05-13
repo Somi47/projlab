@@ -340,6 +340,9 @@ public class Warehouse extends DebuggedClass {
 			CreateFloorRandomBox(8, 2);
 		}
 		
+		for(Box b : boxes)
+			b.CheckStucked();
+		
 		FunctionLogger.logFunctionReturnVoid();
 	}
 	

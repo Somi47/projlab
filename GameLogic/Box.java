@@ -122,6 +122,8 @@ public class Box extends Thing implements Moveable{
 					|| (GetField().GetNeighbor(Direction.values()[(i+1)>3?0:(i+1)]) != null && GetField().GetNeighbor(Direction.values()[(i+1)>3?0:(i+1)]).GetThing() != null && GetField().GetNeighbor(Direction.values()[(i+1)>3?0:(i+1)]).GetThing().isStucked()))
 				)
 				SetStucked(true);
+			else
+				SetStucked(false);
 		}
 		
 		FunctionLogger.logFunctionReturnVoid();
